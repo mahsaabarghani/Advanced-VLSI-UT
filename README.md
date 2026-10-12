@@ -135,8 +135,7 @@ The post-layout test configurations are stored in `XORTEST`, `XOR_T`, and `XOR_T
 │   ├── XORTEST/               # XOR post-layout test configuration
 │   ├── XOR_T/                 # XOR test configuration variant
 │   └── XOR_TEST/              # XOR post-layout test schematic/configuration
-├── CA1_Report.pdf             # Anonymized PDF report
-├── CA1_Report.docx            # Anonymized editable report
+│   └── CA1_Report.pdf             # Anonymized PDF report
 └── README.md
 ```
 
@@ -198,11 +197,9 @@ Future assignments can be added using the following convention:
 ```text
 .
 ├── CA1/
-├── CA1_Report.pdf
-├── CA1_Report.docx
 ├── CA2/
-├── CA2_Report.pdf
-├── CA2_Report.docx
+├── CA3/
+├── CA4/
 └── README.md
 ```
 
