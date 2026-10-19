@@ -1,10 +1,10 @@
-# Advanced VLSI - Cadence Virtuoso Coursework
+# Advanced VLSI - Cadence Virtuoso and HSPICE Coursework
 
-This repository contains the Cadence Virtuoso design files and report for the first computer assignment of the Advanced VLSI course. The work covers transistor-level gate design, symbol creation, transient simulation, 4-bit adder architectures, power and delay comparison, XOR layout, physical verification, parasitic extraction, and post-layout simulation.
+This repository contains deliverables for the first and second computer assignments of the Advanced VLSI course. Student numbers are removed from the included reports; personal names are retained. CA1 covers Cadence Virtuoso transistor-level logic gates, 4-bit adders, XOR layout, physical verification, parasitic extraction, and post-layout simulation. CA2 studies logical-effort sizing and delay in a combinational CMOS network using HSPICE and a 32 nm bulk CMOS model.
 
-The repository is organized so that later coursework can be added without changing the structure of the existing assignment. Each future assignment can be added as a new top-level directory such as `CA2/`, together with its report and a short entry in the **Future coursework** section below.
+Each assignment is kept in its own top-level directory with its report and design data: `CA1/` for the Virtuoso work and `CA2/` for the HSPICE work.
 
-## Course and technology
+## Course and technology (CA1)
 
 - Course: Advanced VLSI
 - Assignment: Computer Assignment 1
@@ -15,7 +15,7 @@ The repository is organized so that later coursework can be added without changi
 - Default transistor length: `L = 180 nm`
 - Physical verification: Calibre with the required `1fF` rule/setup file
 
-## Assignment scope
+## CA1 assignment scope
 
 ### 1. Basic logic gates
 
@@ -116,32 +116,24 @@ The post-layout test configurations are stored in `XORTEST`, `XOR_T`, and `XOR_T
 
 ```text
 .
-├── CA1/
-│   ├── INV/                   # Inverter schematic and symbol
-│   ├── AND/                   # AND gate schematic and symbol
-│   ├── NAND/                  # NAND gate schematic and symbol
-│   ├── XOR/                   # XOR schematic, symbol, layout, and verification data
-│   ├── MUX/                   # 2:1 multiplexer design
-│   ├── MUX2/                  # Supporting multiplexer cell
-│   ├── CA1_Q1_test/           # Basic-gate test structure
-│   ├── FULLadderWITHnand/     # NAND-based one-bit full adder
-│   ├── 4_bitRIPPLE_NAND/      # NAND-based 4-bit ripple-carry adder
-│   ├── FAWITHXOR/              # XOR-based one-bit full adder
-│   ├── 4bitRIPPLE_XOR/         # XOR-based 4-bit ripple-carry adder
-│   ├── Manchester/            # Manchester carry-chain adder
-│   ├── Q2_TEST/               # Adder test structure
-│   ├── Q2TEST2/               # Adder test variant
-│   ├── Q2TEST3/               # Adder test variant
-│   ├── XORTEST/               # XOR post-layout test configuration
-│   ├── XOR_T/                 # XOR test configuration variant
-│   └── XOR_TEST/              # XOR post-layout test schematic/configuration
-│   └── CA1_Report.pdf             # Anonymized PDF report
+├── CA1/                         # Cadence Virtuoso library and CA1 report
+│   ├── INV/ ... XOR_TEST/       # Gate, adder, test, and layout cells
+│   └── CA1_Report.pdf           # CA1 report with student number removed
+├── CA2/
+│   ├── CA2_Report.pdf           # CA2 report with student number removed
+│   ├── models/
+│   │   └── 32nm_bulk.pm         # Supplied 32 nm model source
+│   └── simulation/
+│       ├── CA2.sp               # HSPICE deck
+│       ├── 32nm_bulk.pm.txt     # Model include used by the deck
+│       ├── CA2.lis              # HSPICE log and measurements
+│       └── CA2.*                # Transient and measurement output files
 └── README.md
 ```
 
-The Cadence lock files (`*.cdslck*`) are intentionally excluded from this clean copy because they are temporary session files and can contain machine-specific state. Cadence can recreate them when the library is opened.
+The Cadence lock files (`*.cdslck*`) are intentionally excluded from the CA1 clean copy because they are temporary session files and can contain machine-specific state. Cadence can recreate them when the library is opened.
 
-## Opening the design in Cadence
+## Opening the CA1 design in Cadence
 
 The files are Cadence OpenAccess library data rather than a standalone Python or SPICE project. To use them:
 
@@ -153,7 +145,7 @@ The files are Cadence OpenAccess library data rather than a standalone Python or
 
 Cadence and Calibre configuration paths are installation-specific and are not embedded in this repository. A clean checkout may therefore require reconnecting the technology and model libraries before simulation.
 
-## Report checklist
+## CA1 report checklist
 
 The report should contain the following evidence for a complete submission:
 
@@ -172,7 +164,7 @@ The report should contain the following evidence for a complete submission:
 - Post-layout versus schematic simulation comparison.
 - Explicit assumptions, simulation time, input timing, supply voltage, and technology information.
 
-## Grading structure from the assignment
+## CA1 grading structure from the assignment
 
 The attached assignment distributes 150 points as follows:
 
@@ -189,6 +181,39 @@ The attached assignment distributes 150 points as follows:
 | DRC, LVS, and PEX | 15 |
 | Post-layout simulation | 10 |
 | **Total** | **150** |
+
+## CA2 - Gate sizing and delay in 32 nm CMOS
+
+The second computer assignment studies how gate and transistor dimensions affect the delay of a simple combinational circuit. Its implementation uses HSPICE with the supplied 32 nm bulk CMOS transistor model.
+
+### Technology and simulation conditions
+
+- Supply voltage: `VDD = 1.8 V`.
+- Minimum NMOS and PMOS dimensions: `Wmin = Lmin = 32 nm`.
+- Reference inverter ratio: `W/L = 1` for NMOS and `W/L = 2` for PMOS.
+- Input pulse rise and fall times: `0.01 ns` each.
+- The submitted deck uses a `1 ps` transient step and a `2 ns` simulation interval.
+
+### Circuit and analysis flow
+
+The critical path runs from `A` through `NOR2`, `NOR3`, and `NAND2` gates to the inverter input `out`; the final inverter produces node `n`. Side branches produce the intermediate nodes `i`, `j`, and `k`. The output inverter is sized by a factor of 24 and drives a `72 fF` load in the submitted deck.
+
+The assignment asks for these analyses:
+
+1. Use logical effort to calculate gate effort, branching effort, electrical effort, stage effort, and path delay, then derive the sizing factors identified as `x` and `y` in the handout.
+2. Define parameterized `inverter`, `nor2`, `nor3`, and `nand2` subcircuits. Size their pull-up and pull-down paths to approximate the reference inverter drive strength.
+3. Simulate the circuit, inspect its intermediate and output waveforms, measure rise and fall times, and sweep the `NOR3` sizing parameter.
+4. Add inverter stages, choose the stage count and gate sizes for minimum delay, and compare the measured result.
+
+### Included CA2 files
+
+- `CA2/CA2_Report.pdf`: assignment report with the student number removed from its cover.
+- `CA2/models/32nm_bulk.pm`: supplied 32 nm model source.
+- `CA2/simulation/CA2.sp`: parameterized HSPICE deck and measurement statements.
+- `CA2/simulation/32nm_bulk.pm.txt`: model include referenced by the deck; keep it beside `CA2.sp` when rerunning.
+- `CA2/simulation/CA2.lis` and the other `CA2.*` files: log, transient, and measurement outputs from the supplied run.
+
+Run the deck from `CA2/simulation/` with HSPICE so its relative model include resolves correctly. Cadence Virtuoso cell views and physical-layout data are not part of the supplied CA2 archive.
 
 ## Future coursework
 
@@ -213,11 +238,7 @@ For each new assignment, add a subsection with:
 - A short repository-tree entry.
 - A report checklist and known limitations.
 
-### CA2 - To be added
-
-This placeholder is reserved for the next Advanced VLSI computer assignment. It should be replaced with the official objective, design requirements, Cadence cells, simulation setup, physical-verification requirements, and report outputs when the next assignment is available.
-
 ## Privacy and clean-copy notes
 
-This GitHub-ready copy removes the student number from the project paths, the editable report, and the PDF report cover. The original files supplied by the user remain unchanged. The personal name shown in the report was not removed because the requested cleanup specifically targeted the student number.
+Student-number identifiers have been removed from the included report filenames and report content. Personal names shown in the reports are retained. Original source files used to prepare this upload package remain unchanged.
 
