@@ -1,8 +1,8 @@
 # Advanced VLSI - Cadence Virtuoso and HSPICE Coursework
 
-This repository contains deliverables for the first and second computer assignments of the Advanced VLSI course. Student numbers are removed from the included reports; personal names are retained. CA1 covers Cadence Virtuoso transistor-level logic gates, 4-bit adders, XOR layout, physical verification, parasitic extraction, and post-layout simulation. CA2 studies logical-effort sizing and delay in a combinational CMOS network using HSPICE and a 32 nm bulk CMOS model.
+This repository contains deliverables for the first four computer assignments of the Advanced VLSI course. Student numbers are removed from the included reports; personal names are retained. CA1 covers Cadence Virtuoso transistor-level logic gates, 4-bit adders, XOR layout, physical verification, parasitic extraction, and post-layout simulation. CA2 studies logical-effort sizing and delay in a combinational CMOS network using HSPICE and a 32 nm bulk CMOS model. CA3 compares 8-bit ripple-carry and Kogge–Stone adders, including process-corner, supply-voltage variation, and temperature analyses. CA4 studies a combinational CMOS block in register and latch pipelines, including setup/hold timing and time borrowing.
 
-Each assignment is kept in its own top-level directory with its report and design data: `CA1/` for the Virtuoso work and `CA2/` for the HSPICE work.
+Each assignment is kept in its own top-level directory with its report and design data: `CA1/` for the Virtuoso work, `CA2/` for the 32 nm HSPICE work, `CA3/` for the adder study, and `CA4/` for the register/latch timing study.
 
 ## Course and technology (CA1)
 
@@ -128,6 +128,24 @@ The post-layout test configurations are stored in `XORTEST`, `XOR_T`, and `XOR_T
 │       ├── 32nm_bulk.pm.txt     # Model include used by the deck
 │       ├── CA2.lis              # HSPICE log and measurements
 │       └── CA2.*                # Transient and measurement output files
+├── CA3/
+│   ├── CA3_Report.pdf            # CA3 report with student number removed
+│   └── simulation/
+│       ├── CRA.sp                # 8-bit ripple-carry adder deck
+│       ├── KSA.sp                # 8-bit Kogge–Stone adder deck
+│       ├── crn90g_2d5_lk_v1d2p1.l # Supplied 90 nm model library
+│       ├── DVF*.vec              # Random and tabular input vectors
+│       ├── *.py                  # Vector-generation and result-analysis scripts
+│       └── KSA.*, CRA.*          # HSPICE logs, checks, and measurement outputs
+├── CA4/
+│   ├── CA4_Report.pdf            # CA4 report with student number removed
+│   ├── CA4_Report.docx           # Editable report with student number redacted
+│   └── simulation/
+│       ├── ca-p1.sp              # Combinational circuit
+│       ├── ca-p2.sp              # Master-slave DFF pipeline
+│       ├── ca-p3.sp              # Positive/negative latch pipeline
+│       ├── mm018.l               # Supplied 180 nm model library
+│       └── ca-p*.* # HSPICE logs and saved results
 └── README.md
 ```
 
@@ -214,6 +232,83 @@ The assignment asks for these analyses:
 - `CA2/simulation/CA2.lis` and the other `CA2.*` files: log, transient, and measurement outputs from the supplied run.
 
 Run the deck from `CA2/simulation/` with HSPICE so its relative model include resolves correctly. Cadence Virtuoso cell views and physical-layout data are not part of the supplied CA2 archive.
+
+
+## CA3 - 8-bit adder architecture and variation analysis
+
+The third computer assignment implements an 8-bit ripple-carry adder (RCA/CPA) and an 8-bit Kogge–Stone adder (KSA) in HSPICE. It compares delay and power, verifies the adders with digital vectors, and examines process corners, supply-voltage variation, and temperature.
+
+### Technology and simulation setup
+
+- Technology model: the supplied 90 nm CMOS library, `crn90g_2d5_lk_v1d2p1.l`.
+- The included RCA deck selects the `TT` corner; the included KSA deck selects `FS` for its Monte Carlo run. Corner results for `SS`, `FF`, `FS`, and `SF` are discussed in the report.
+- Nominal supply in the decks: `1.0 V`; minimum channel length and width parameters are set to `180 nm`.
+- Input transition slope in the DVF files: `50 ps`.
+- The supplied vector files use a `1.1 ns` period and provide 1,000 input/expected-output rows for each adder.
+
+### Assignment scope
+
+1. Build modular 8-bit ripple-carry and Kogge–Stone adders with `Cin`, eight sum outputs, and `Cout`.
+2. Generate digital-vector files and check the simulated sum and carry against expected results. Demonstrate how a deliberately changed vector is reported by HSPICE.
+3. Measure critical-path delay, average dynamic power with switching vectors, and static power with a long vector period.
+4. Compare the Kogge–Stone adder at the `SS`, `FF`, `FS`, and `SF` process corners.
+5. Run 100 Monte Carlo samples with `dev=agauss(0,0.1)` and `Vdd='1+dev'`; analyze voltage variation and the `.mc0`/`.mt0` measurements. Study temperature from `15 °C` to `90 °C` in `5 °C` increments.
+
+### Included CA3 files
+
+- `CA3/CA3_Report.pdf`: report copy with the student number removed from the cover.
+- `CA3/simulation/CRA.sp` and `KSA.sp`: RCA and KSA HSPICE decks.
+- `CA3/simulation/crn90g_2d5_lk_v1d2p1.l`: technology library referenced by both decks.
+- `CA3/simulation/DVF.vec`, `DVF1.vec`, and `DVF-tabular.vec`: randomized and fixed test vectors.
+- `CA3/simulation/*.py`: vector-generation and Monte Carlo/temperature result-analysis scripts.
+- `CA3/simulation/CRA.*` and `KSA.*`: supplied HSPICE logs, `.err0` vector-check reports, Monte Carlo data, and temperature measurements (`KSA.mt0` through `KSA.mt15`).
+
+Run the decks from `CA3/simulation/` so the relative model and vector-file paths resolve. Use HSPICE to run the decks; Python post-processing scripts require their usual scientific packages (for example, NumPy, pandas, and Matplotlib). Keep a backup of the supplied vectors before running a generator, since the generators write to `DVF.vec` or `DVF1.vec` in the current directory.
+
+### Verification notes and limits of the supplied run
+
+The supplied simulation outputs are included as evidence and diagnostics; they should not be read as a clean functional pass. Both `.err0` files contain output mismatches. The RCA deck simulates for `1100 ns`, while the KSA deck simulates for only `20 ns`, so the KSA run does not exercise the complete 1,000-row, `1.1 ns` vector set. The KSA deck also measures `S8` from an `A1` trigger that occurs after the reported target crossing; its saved `tpd_max_s8` values are negative. Its saved `power_avg` values are also negative; confirm the measurement sign convention before reporting power consumption.
+
+Review the KSA carry-in path before relying on its functional or timing results: the netlist injects `Cin` into the first gray cell, but later carry cells use group-generate terms instead of propagating `Cin` through the prefix equations. Also check the temperature output mapping: `KSA.mt0` contains 100 Monte Carlo records at `25 °C`, while the included temperature-analysis script treats `mt0` as the `15 °C` result; the temperature output labels therefore need validation before plotting or quoting a 15–90 °C trend. The included generator scripts specify a `5 ns` vector period, which differs from the `1.1 ns` period in the supplied vector files.
+
+Before presenting final comparisons, correct these setup/measurement issues and rerun functional vector checking, timing, power, corner, Monte Carlo, and temperature analyses. The included report describes the intended analysis flow and submitted results; the repository README records the mismatches and configuration differences visible in the supplied decks and outputs.
+
+
+## CA4 - Register and latch timing in 180 nm CMOS
+
+The fourth computer assignment uses HSPICE to study a sized combinational block, then places that logic between master-slave D flip-flops and transparent latches. It compares timing limits, sampling behavior, and time borrowing across pipeline structures.
+
+### Technology and simulation setup
+
+- Technology library: `CA4/simulation/mm018.l`, using the `TT` corner in the included decks.
+- Supply voltage: `VDD = 1.8 V`.
+- Minimum transistor dimensions: `Lmin = 180 nm` and `Wmin = 220 nm`.
+- Clock duty cycle: 50%; the assignment assumes sequential inputs are specified before the rising clock edge.
+- Output load on the combinational block: `100 fF`.
+
+### Assignment scope
+
+1. Build the specified combinational network from reusable gate subcircuits. Scale the gates according to the sizes shown in the handout, and identify the worst-case input sequence and propagation delay.
+2. Build a master-slave DFF from two D latches. Place the combinational network between input and output registers, measure setup, hold, clock-to-Q, and combinational delay, and compare simulation-based and theoretical clock limits. Demonstrate incorrect sampling above the working frequency.
+3. Build positive and negative latches and use them around the combinational network to study time borrowing. Split the logic into two blocks and compare the three-latch partition variants from the handout.
+
+### Included CA4 files
+
+- `CA4/CA4_Report.pdf`: report copy with the student number removed from its cover.
+- `CA4/CA4_Report.docx`: editable report with the student number replaced by a redaction mask; personal metadata is scrubbed.
+- `CA4/simulation/ca-p1.sp`, `ca-p2.sp`, and `ca-p3.sp`: the supplied combinational, DFF-pipeline, and positive/negative latch-pipeline decks.
+- `CA4/simulation/mm018.l`: the model library included with the assignment and referenced by the decks.
+- `CA4/simulation/ca-p*.lis`, `.mt0`, `.tr0`, `.st0`, `.ic0`, and `.pa0`: supplied HSPICE logs, measurements, waveforms, and analysis data.
+
+Run each deck from `CA4/simulation/` so the relative `mm018.l` include resolves. The output files are from the supplied runs; no new HSPICE runs were generated for this package.
+
+### Verification notes and limits of the supplied run
+
+The first deck reports `tpd_fall_A ≈ 322.03 ps` and `tpd_rise_A ≈ 258.15 ps` for its saved stimulus. The DFF deck reports `tsetup_A = 45 ps`, `thold_A = -45 ps`, and `tCQ ≈ 222.07 ps`, but its `.mt0` and `.lis` show that `tpd_fall_A` failed. The report nevertheless uses an approximately `409 ps` combinational delay to calculate the DFF pipeline frequency; that value is present in the latch-pipeline run (`ca-p3.mt0`) as approximately `408.42 ps`. Treat the reported DFF frequency calculation as needing a reproducible delay measurement.
+
+The saved hold-time measurement is negative because its trigger and target events are ordered such that the input crossing precedes the clock edge. It does not establish a positive hold-time requirement; sweep the input transition around the active edge to determine the valid hold boundary. The latch-pipeline run also reports `thold_A = -45 ps` and includes a duplicate `.TRAN` statement that HSPICE ignores.
+
+The report discusses splitting the combinational block between three latches and comparing the partition variants shown in the handout, but the supplied archive contains only three decks (`ca-p1.sp` through `ca-p3.sp`). It does not include separate decks or saved output files for those three-latch partition variants. The included files therefore support the basic combinational, DFF, and two-latch pipeline runs; the full three-latch comparison cannot be reproduced from the supplied simulation files alone.
 
 ## Future coursework
 
