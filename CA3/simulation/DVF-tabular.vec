@@ -1,0 +1,21 @@
+;8-bit Adder: A[8:1] B[8:1] cin sum[8:1] cout 
+radix 44 44 1 44 1 
+;define name for each vector 
+vname A[8:1] B[8:1] Cin S[8:1] Cout 
+;define IO directions (I = input, O = output) 
+IO II II I OO O 
+
+;waveform definitions for simulation timing 
+tunit ps 
+Period 1100
+tdelay 1000.0 00 00 0 FF 1
+Slope 50 
+VOH '0.8*Vdd'
+VOL '0.2*Vdd'
+
+; tabular data
+; A[7:0]   B[7:0]   Cin   S[7:0]   Cout
+00        00        0     00        0
+FF        00		0	  FF		0
+;00		  00		0	  00		0
+;FF		  01		0     00        1

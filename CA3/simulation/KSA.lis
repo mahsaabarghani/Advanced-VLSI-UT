@@ -1,0 +1,1969 @@
+ ****** HSPICE -- P-2019.06-SP1-1 win64 (Sep 27 2019) ******                    
+  Copyright (c) 1986 - 2025 by Synopsys, Inc. All Rights Reserved.              
+  This software and the associated documentation are proprietary
+  to Synopsys, Inc. This software may only be used in accordance
+  with the terms and conditions of a written license agreement with
+  Synopsys, Inc. All other use, reproduction, or distribution of
+  this software is strictly prohibited.
+  Input File: KSA.sp                                                            
+  Command line options: C:\synopsys\Hspice_P-2019.06-SP1-1\WIN64\hspice.com -i KSA.sp -o G:\trm2\vlsi\CA3\KSA.lis
+  Start time: Wed Jun  4 16:41:33 2025
+  lic:  
+  lic: FLEXlm: SDK_12.3 
+  lic: USER:   Lenovo               HOSTNAME: mahsa 
+  lic: HOSTID: "000000000000"       PID:      7704 
+  lic: Using FLEXlm license file: 
+  lic: 27000@mahsa 
+  lic: Checkout 1 hspice 
+  lic: License/Maintenance for hspice will expire on 30-dec-2030/2020.12 
+  lic: 1(in_use)/99(total) FLOATING license(s) on SERVER 27000@mahsa 
+  lic:   
+  **info** Monte Carlo simulation is detected, increase number of measure digits to 7 for Monte Carlo post processing.
+  **info** option measform has been reset to 1 to reduce measure file storage and enable advanced Monte Carlo data mining.
+  **warning** (KSA.sp:16) Global net name "gnd" in subckt pin list. The pin will be connected to the local net. Recommend to not use global net names in subckt pin lists.
+1****** HSPICE -- P-2019.06-SP1-1 win64 (Sep 27 2019) ******                    
+ ******  
+ * 8-bit kogge-stone adder design
+
+ ****** circuit name directory
+ circuit number to circuit name directory
+   number circuitname                     definition         multiplier
+        0 main circuit
+        1 xksa.                           ksa8               1.00 
+        2 xksa.xpp1.                      pre_process        1.00 
+        3 xksa.xpp2.                      pre_process        1.00 
+        4 xksa.xpp3.                      pre_process        1.00 
+        5 xksa.xpp4.                      pre_process        1.00 
+        6 xksa.xpp5.                      pre_process        1.00 
+        7 xksa.xpp6.                      pre_process        1.00 
+        8 xksa.xpp7.                      pre_process        1.00 
+        9 xksa.xpp8.                      pre_process        1.00 
+       10 xksa.xgc0.                      grey_cell          1.00 
+       11 xksa.xbc1_1.                    black_cell         1.00 
+       12 xksa.xbc1_2.                    black_cell         1.00 
+       13 xksa.xbc1_3.                    black_cell         1.00 
+       14 xksa.xbc1_4.                    black_cell         1.00 
+       15 xksa.xbc1_5.                    black_cell         1.00 
+       16 xksa.xbc1_6.                    black_cell         1.00 
+       17 xksa.xbc1_7.                    black_cell         1.00 
+       18 xksa.xgc2_1.                    grey_cell          1.00 
+       19 xksa.xgc2_2.                    grey_cell          1.00 
+       20 xksa.xbc2_3.                    black_cell         1.00 
+       21 xksa.xbc2_4.                    black_cell         1.00 
+       22 xksa.xbc2_5.                    black_cell         1.00 
+       23 xksa.xbc2_6.                    black_cell         1.00 
+       24 xksa.xbc2_7.                    black_cell         1.00 
+       25 xksa.xgc3_1.                    grey_cell          1.00 
+       26 xksa.xgc3_2.                    grey_cell          1.00 
+       27 xksa.xgc3_3.                    grey_cell          1.00 
+       28 xksa.xgc3_4.                    grey_cell          1.00 
+       29 xksa.xgc3_5.                    grey_cell          1.00 
+       30 xksa.xgc_cout.                  grey_cell          1.00 
+       31 xksa.xs1.                       sum_block          1.00 
+       32 xksa.xs2.                       sum_block          1.00 
+       33 xksa.xs3.                       sum_block          1.00 
+       34 xksa.xs4.                       sum_block          1.00 
+       35 xksa.xs5.                       sum_block          1.00 
+       36 xksa.xs6.                       sum_block          1.00 
+       37 xksa.xs7.                       sum_block          1.00 
+       38 xksa.xs8.                       sum_block          1.00 
+       39 xksa.xpp1.xu1.                  xor2               1.00 
+       40 xksa.xpp1.xu2.                  and2               1.00 
+       41 xksa.xpp2.xu1.                  xor2               1.00 
+       42 xksa.xpp2.xu2.                  and2               1.00 
+       43 xksa.xpp3.xu1.                  xor2               1.00 
+       44 xksa.xpp3.xu2.                  and2               1.00 
+       45 xksa.xpp4.xu1.                  xor2               1.00 
+       46 xksa.xpp4.xu2.                  and2               1.00 
+       47 xksa.xpp5.xu1.                  xor2               1.00 
+       48 xksa.xpp5.xu2.                  and2               1.00 
+       49 xksa.xpp6.xu1.                  xor2               1.00 
+       50 xksa.xpp6.xu2.                  and2               1.00 
+       51 xksa.xpp7.xu1.                  xor2               1.00 
+       52 xksa.xpp7.xu2.                  and2               1.00 
+       53 xksa.xpp8.xu1.                  xor2               1.00 
+       54 xksa.xpp8.xu2.                  and2               1.00 
+       55 xksa.xgc0.xu1.                  and2               1.00 
+       56 xksa.xgc0.xu2.                  or2                1.00 
+       57 xksa.xbc1_1.xu1.                and2               1.00 
+       58 xksa.xbc1_1.xu2.                or2                1.00 
+       59 xksa.xbc1_1.xu3.                and2               1.00 
+       60 xksa.xbc1_2.xu1.                and2               1.00 
+       61 xksa.xbc1_2.xu2.                or2                1.00 
+       62 xksa.xbc1_2.xu3.                and2               1.00 
+       63 xksa.xbc1_3.xu1.                and2               1.00 
+       64 xksa.xbc1_3.xu2.                or2                1.00 
+       65 xksa.xbc1_3.xu3.                and2               1.00 
+       66 xksa.xbc1_4.xu1.                and2               1.00 
+       67 xksa.xbc1_4.xu2.                or2                1.00 
+       68 xksa.xbc1_4.xu3.                and2               1.00 
+       69 xksa.xbc1_5.xu1.                and2               1.00 
+       70 xksa.xbc1_5.xu2.                or2                1.00 
+       71 xksa.xbc1_5.xu3.                and2               1.00 
+       72 xksa.xbc1_6.xu1.                and2               1.00 
+       73 xksa.xbc1_6.xu2.                or2                1.00 
+       74 xksa.xbc1_6.xu3.                and2               1.00 
+       75 xksa.xbc1_7.xu1.                and2               1.00 
+       76 xksa.xbc1_7.xu2.                or2                1.00 
+       77 xksa.xbc1_7.xu3.                and2               1.00 
+       78 xksa.xgc2_1.xu1.                and2               1.00 
+       79 xksa.xgc2_1.xu2.                or2                1.00 
+       80 xksa.xgc2_2.xu1.                and2               1.00 
+       81 xksa.xgc2_2.xu2.                or2                1.00 
+       82 xksa.xbc2_3.xu1.                and2               1.00 
+       83 xksa.xbc2_3.xu2.                or2                1.00 
+       84 xksa.xbc2_3.xu3.                and2               1.00 
+       85 xksa.xbc2_4.xu1.                and2               1.00 
+       86 xksa.xbc2_4.xu2.                or2                1.00 
+       87 xksa.xbc2_4.xu3.                and2               1.00 
+       88 xksa.xbc2_5.xu1.                and2               1.00 
+       89 xksa.xbc2_5.xu2.                or2                1.00 
+       90 xksa.xbc2_5.xu3.                and2               1.00 
+       91 xksa.xbc2_6.xu1.                and2               1.00 
+       92 xksa.xbc2_6.xu2.                or2                1.00 
+       93 xksa.xbc2_6.xu3.                and2               1.00 
+       94 xksa.xbc2_7.xu1.                and2               1.00 
+       95 xksa.xbc2_7.xu2.                or2                1.00 
+       96 xksa.xbc2_7.xu3.                and2               1.00 
+       97 xksa.xgc3_1.xu1.                and2               1.00 
+       98 xksa.xgc3_1.xu2.                or2                1.00 
+       99 xksa.xgc3_2.xu1.                and2               1.00 
+      100 xksa.xgc3_2.xu2.                or2                1.00 
+      101 xksa.xgc3_3.xu1.                and2               1.00 
+      102 xksa.xgc3_3.xu2.                or2                1.00 
+      103 xksa.xgc3_4.xu1.                and2               1.00 
+      104 xksa.xgc3_4.xu2.                or2                1.00 
+      105 xksa.xgc3_5.xu1.                and2               1.00 
+      106 xksa.xgc3_5.xu2.                or2                1.00 
+      107 xksa.xgc_cout.xu1.              and2               1.00 
+      108 xksa.xgc_cout.xu2.              or2                1.00 
+      109 xksa.xs1.xu1.                   xor2               1.00 
+      110 xksa.xs2.xu1.                   xor2               1.00 
+      111 xksa.xs3.xu1.                   xor2               1.00 
+      112 xksa.xs4.xu1.                   xor2               1.00 
+      113 xksa.xs5.xu1.                   xor2               1.00 
+      114 xksa.xs6.xu1.                   xor2               1.00 
+      115 xksa.xs7.xu1.                   xor2               1.00 
+      116 xksa.xs8.xu1.                   xor2               1.00 
+      117 xksa.xpp1.xu1.xinv1.            inv                1.00 
+      118 xksa.xpp1.xu1.xinv2.            inv                1.00 
+      119 xksa.xpp1.xu2.xu1.              nand2              1.00 
+      120 xksa.xpp1.xu2.xu2.              inv                1.00 
+      121 xksa.xpp2.xu1.xinv1.            inv                1.00 
+      122 xksa.xpp2.xu1.xinv2.            inv                1.00 
+      123 xksa.xpp2.xu2.xu1.              nand2              1.00 
+      124 xksa.xpp2.xu2.xu2.              inv                1.00 
+      125 xksa.xpp3.xu1.xinv1.            inv                1.00 
+      126 xksa.xpp3.xu1.xinv2.            inv                1.00 
+      127 xksa.xpp3.xu2.xu1.              nand2              1.00 
+      128 xksa.xpp3.xu2.xu2.              inv                1.00 
+      129 xksa.xpp4.xu1.xinv1.            inv                1.00 
+      130 xksa.xpp4.xu1.xinv2.            inv                1.00 
+      131 xksa.xpp4.xu2.xu1.              nand2              1.00 
+      132 xksa.xpp4.xu2.xu2.              inv                1.00 
+      133 xksa.xpp5.xu1.xinv1.            inv                1.00 
+      134 xksa.xpp5.xu1.xinv2.            inv                1.00 
+      135 xksa.xpp5.xu2.xu1.              nand2              1.00 
+      136 xksa.xpp5.xu2.xu2.              inv                1.00 
+      137 xksa.xpp6.xu1.xinv1.            inv                1.00 
+      138 xksa.xpp6.xu1.xinv2.            inv                1.00 
+      139 xksa.xpp6.xu2.xu1.              nand2              1.00 
+      140 xksa.xpp6.xu2.xu2.              inv                1.00 
+      141 xksa.xpp7.xu1.xinv1.            inv                1.00 
+      142 xksa.xpp7.xu1.xinv2.            inv                1.00 
+      143 xksa.xpp7.xu2.xu1.              nand2              1.00 
+      144 xksa.xpp7.xu2.xu2.              inv                1.00 
+      145 xksa.xpp8.xu1.xinv1.            inv                1.00 
+      146 xksa.xpp8.xu1.xinv2.            inv                1.00 
+      147 xksa.xpp8.xu2.xu1.              nand2              1.00 
+      148 xksa.xpp8.xu2.xu2.              inv                1.00 
+      149 xksa.xgc0.xu1.xu1.              nand2              1.00 
+      150 xksa.xgc0.xu1.xu2.              inv                1.00 
+      151 xksa.xgc0.xu2.xu1.              nor2               1.00 
+      152 xksa.xgc0.xu2.xu2.              inv                1.00 
+      153 xksa.xbc1_1.xu1.xu1.            nand2              1.00 
+      154 xksa.xbc1_1.xu1.xu2.            inv                1.00 
+      155 xksa.xbc1_1.xu2.xu1.            nor2               1.00 
+      156 xksa.xbc1_1.xu2.xu2.            inv                1.00 
+      157 xksa.xbc1_1.xu3.xu1.            nand2              1.00 
+      158 xksa.xbc1_1.xu3.xu2.            inv                1.00 
+      159 xksa.xbc1_2.xu1.xu1.            nand2              1.00 
+      160 xksa.xbc1_2.xu1.xu2.            inv                1.00 
+      161 xksa.xbc1_2.xu2.xu1.            nor2               1.00 
+      162 xksa.xbc1_2.xu2.xu2.            inv                1.00 
+      163 xksa.xbc1_2.xu3.xu1.            nand2              1.00 
+      164 xksa.xbc1_2.xu3.xu2.            inv                1.00 
+      165 xksa.xbc1_3.xu1.xu1.            nand2              1.00 
+      166 xksa.xbc1_3.xu1.xu2.            inv                1.00 
+      167 xksa.xbc1_3.xu2.xu1.            nor2               1.00 
+      168 xksa.xbc1_3.xu2.xu2.            inv                1.00 
+      169 xksa.xbc1_3.xu3.xu1.            nand2              1.00 
+      170 xksa.xbc1_3.xu3.xu2.            inv                1.00 
+      171 xksa.xbc1_4.xu1.xu1.            nand2              1.00 
+      172 xksa.xbc1_4.xu1.xu2.            inv                1.00 
+      173 xksa.xbc1_4.xu2.xu1.            nor2               1.00 
+      174 xksa.xbc1_4.xu2.xu2.            inv                1.00 
+      175 xksa.xbc1_4.xu3.xu1.            nand2              1.00 
+      176 xksa.xbc1_4.xu3.xu2.            inv                1.00 
+      177 xksa.xbc1_5.xu1.xu1.            nand2              1.00 
+      178 xksa.xbc1_5.xu1.xu2.            inv                1.00 
+      179 xksa.xbc1_5.xu2.xu1.            nor2               1.00 
+      180 xksa.xbc1_5.xu2.xu2.            inv                1.00 
+      181 xksa.xbc1_5.xu3.xu1.            nand2              1.00 
+      182 xksa.xbc1_5.xu3.xu2.            inv                1.00 
+      183 xksa.xbc1_6.xu1.xu1.            nand2              1.00 
+      184 xksa.xbc1_6.xu1.xu2.            inv                1.00 
+      185 xksa.xbc1_6.xu2.xu1.            nor2               1.00 
+      186 xksa.xbc1_6.xu2.xu2.            inv                1.00 
+      187 xksa.xbc1_6.xu3.xu1.            nand2              1.00 
+      188 xksa.xbc1_6.xu3.xu2.            inv                1.00 
+      189 xksa.xbc1_7.xu1.xu1.            nand2              1.00 
+      190 xksa.xbc1_7.xu1.xu2.            inv                1.00 
+      191 xksa.xbc1_7.xu2.xu1.            nor2               1.00 
+      192 xksa.xbc1_7.xu2.xu2.            inv                1.00 
+      193 xksa.xbc1_7.xu3.xu1.            nand2              1.00 
+      194 xksa.xbc1_7.xu3.xu2.            inv                1.00 
+      195 xksa.xgc2_1.xu1.xu1.            nand2              1.00 
+      196 xksa.xgc2_1.xu1.xu2.            inv                1.00 
+      197 xksa.xgc2_1.xu2.xu1.            nor2               1.00 
+      198 xksa.xgc2_1.xu2.xu2.            inv                1.00 
+      199 xksa.xgc2_2.xu1.xu1.            nand2              1.00 
+      200 xksa.xgc2_2.xu1.xu2.            inv                1.00 
+      201 xksa.xgc2_2.xu2.xu1.            nor2               1.00 
+      202 xksa.xgc2_2.xu2.xu2.            inv                1.00 
+      203 xksa.xbc2_3.xu1.xu1.            nand2              1.00 
+      204 xksa.xbc2_3.xu1.xu2.            inv                1.00 
+      205 xksa.xbc2_3.xu2.xu1.            nor2               1.00 
+      206 xksa.xbc2_3.xu2.xu2.            inv                1.00 
+      207 xksa.xbc2_3.xu3.xu1.            nand2              1.00 
+      208 xksa.xbc2_3.xu3.xu2.            inv                1.00 
+      209 xksa.xbc2_4.xu1.xu1.            nand2              1.00 
+      210 xksa.xbc2_4.xu1.xu2.            inv                1.00 
+      211 xksa.xbc2_4.xu2.xu1.            nor2               1.00 
+      212 xksa.xbc2_4.xu2.xu2.            inv                1.00 
+      213 xksa.xbc2_4.xu3.xu1.            nand2              1.00 
+      214 xksa.xbc2_4.xu3.xu2.            inv                1.00 
+      215 xksa.xbc2_5.xu1.xu1.            nand2              1.00 
+      216 xksa.xbc2_5.xu1.xu2.            inv                1.00 
+      217 xksa.xbc2_5.xu2.xu1.            nor2               1.00 
+      218 xksa.xbc2_5.xu2.xu2.            inv                1.00 
+      219 xksa.xbc2_5.xu3.xu1.            nand2              1.00 
+      220 xksa.xbc2_5.xu3.xu2.            inv                1.00 
+      221 xksa.xbc2_6.xu1.xu1.            nand2              1.00 
+      222 xksa.xbc2_6.xu1.xu2.            inv                1.00 
+      223 xksa.xbc2_6.xu2.xu1.            nor2               1.00 
+      224 xksa.xbc2_6.xu2.xu2.            inv                1.00 
+      225 xksa.xbc2_6.xu3.xu1.            nand2              1.00 
+      226 xksa.xbc2_6.xu3.xu2.            inv                1.00 
+      227 xksa.xbc2_7.xu1.xu1.            nand2              1.00 
+      228 xksa.xbc2_7.xu1.xu2.            inv                1.00 
+      229 xksa.xbc2_7.xu2.xu1.            nor2               1.00 
+      230 xksa.xbc2_7.xu2.xu2.            inv                1.00 
+      231 xksa.xbc2_7.xu3.xu1.            nand2              1.00 
+      232 xksa.xbc2_7.xu3.xu2.            inv                1.00 
+      233 xksa.xgc3_1.xu1.xu1.            nand2              1.00 
+      234 xksa.xgc3_1.xu1.xu2.            inv                1.00 
+      235 xksa.xgc3_1.xu2.xu1.            nor2               1.00 
+      236 xksa.xgc3_1.xu2.xu2.            inv                1.00 
+      237 xksa.xgc3_2.xu1.xu1.            nand2              1.00 
+      238 xksa.xgc3_2.xu1.xu2.            inv                1.00 
+      239 xksa.xgc3_2.xu2.xu1.            nor2               1.00 
+      240 xksa.xgc3_2.xu2.xu2.            inv                1.00 
+      241 xksa.xgc3_3.xu1.xu1.            nand2              1.00 
+      242 xksa.xgc3_3.xu1.xu2.            inv                1.00 
+      243 xksa.xgc3_3.xu2.xu1.            nor2               1.00 
+      244 xksa.xgc3_3.xu2.xu2.            inv                1.00 
+      245 xksa.xgc3_4.xu1.xu1.            nand2              1.00 
+      246 xksa.xgc3_4.xu1.xu2.            inv                1.00 
+      247 xksa.xgc3_4.xu2.xu1.            nor2               1.00 
+      248 xksa.xgc3_4.xu2.xu2.            inv                1.00 
+      249 xksa.xgc3_5.xu1.xu1.            nand2              1.00 
+      250 xksa.xgc3_5.xu1.xu2.            inv                1.00 
+      251 xksa.xgc3_5.xu2.xu1.            nor2               1.00 
+      252 xksa.xgc3_5.xu2.xu2.            inv                1.00 
+      253 xksa.xgc_cout.xu1.xu1.          nand2              1.00 
+      254 xksa.xgc_cout.xu1.xu2.          inv                1.00 
+      255 xksa.xgc_cout.xu2.xu1.          nor2               1.00 
+      256 xksa.xgc_cout.xu2.xu2.          inv                1.00 
+      257 xksa.xs1.xu1.xinv1.             inv                1.00 
+      258 xksa.xs1.xu1.xinv2.             inv                1.00 
+      259 xksa.xs2.xu1.xinv1.             inv                1.00 
+      260 xksa.xs2.xu1.xinv2.             inv                1.00 
+      261 xksa.xs3.xu1.xinv1.             inv                1.00 
+      262 xksa.xs3.xu1.xinv2.             inv                1.00 
+      263 xksa.xs4.xu1.xinv1.             inv                1.00 
+      264 xksa.xs4.xu1.xinv2.             inv                1.00 
+      265 xksa.xs5.xu1.xinv1.             inv                1.00 
+      266 xksa.xs5.xu1.xinv2.             inv                1.00 
+      267 xksa.xs6.xu1.xinv1.             inv                1.00 
+      268 xksa.xs6.xu1.xinv2.             inv                1.00 
+      269 xksa.xs7.xu1.xinv1.             inv                1.00 
+      270 xksa.xs7.xu1.xinv2.             inv                1.00 
+      271 xksa.xs8.xu1.xinv1.             inv                1.00 
+      272 xksa.xs8.xu1.xinv2.             inv                1.00 
+  **warning** (KSA.sp:152) Both nodes of element vgnd are connected together; Line ignored.
+ Model file: crn90g_2d5_lk_v1d2p1.l
+ Model line:        12331
+ Model Name: pch.20  
+ BSIM4 Model (Level 54)
+    MOBMOD = 0
+    BINUNIT = 2
+    PARAMCHK = 1
+    CAPMOD = 2
+    DIOMOD = 1
+    RDSMOD = 0
+    TRNQSMOD = 0
+    ACNQSMOD = 0
+    RBODYMOD = 0
+    RGATEMOD = 0
+    PERMOD = 1
+    GEOMOD = 0
+    RGEOMOD = 0
+    FNOIMOD = 1
+    TNOIMOD = 0
+    IGCMOD = 1
+    IGBMOD = 1
+    STIMOD = 1
+    VBFWDMOD = 0
+    VERSION =    4.4 
+    TOXREF =  3e-09 
+    TOXE = 2.5e-09 
+    TOXP = 1.975e-09 
+    TOXM = 2.5e-09 
+    DTOX = 5.25e-10 
+    EPSROX =    3.9 
+    CDSC =      0 
+    CDSCB =      0 
+    CDSCD =      0 
+    CIT = -0.0002857 
+    NFACTOR = -1.191 
+    XJ = 1.7e-07 
+    VSAT = 1.2e+05 
+    A0 =   3.62 
+    AGS =  5.742 
+    A1 =      0 
+    A2 =      1 
+    AT = 2.83e+05 
+    KETA = -0.2576 
+    NSUB =  6e+16 
+    NDEP = 1.72e+17 
+    NSD =  1e+20 
+    NGATE =  8e+19 
+    GAMMA1 =      0 
+    GAMMA2 =      0 
+    VBX =      0 
+    VBM =     -3 
+    XT = 1.55e-07 
+    K1 = 0.1623 
+    KT1 = -0.2258 
+    KT1L =      0 
+    KT2 = -0.03875 
+    K2 = 0.03375 
+    K3 =  -0.58 
+    K3B =    0.8 
+    LPE0 = 2.805e-07 
+    LPEB =  1e-07 
+    DVTP0 =      0 
+    DVTP1 =      0 
+    W0 =      0 
+    DVT0 =     10 
+    DVT1 =   1.71 
+    DVT2 = 0.0928 
+    DVT0W =      0 
+    DVT1W =      0 
+    DVT2W =      0 
+    DROUT =      0 
+    DSUB =    0.5 
+    VTH0 = -0.2113 
+    EU =      1 
+    UA = -4.197e-10 
+    UA1 = 6.229e-10 
+    UB = 2.527e-18 
+    UB1 = -3.63e-18 
+    UC = 1.202e-10 
+    UC1 = -6.421e-11 
+    U0 = 0.008267 
+    UTE = -1.609 
+    VOFF = -0.1416 
+    VOFFL =      0 
+    MINV =      0 
+    FPROUT =   1000 
+    PDITS =      0 
+    PDITSD =      0 
+    PDITSL =      0 
+    DELTA =   0.02 
+    RDSW =    170 
+    RDSWMIN =      0 
+    RDWMIN =      0 
+    RSWMIN =      0 
+    RDW =    100 
+    RSW =    100 
+    PRWG =      0 
+    PRWB =      0 
+    PRT =      0 
+    ETA0 = 0.06098 
+    ETAB = -0.01537 
+    PCLM = 0.6429 
+    PDIBLC1 =      0 
+    PDIBLC2 =  0.005 
+    PDIBLCB =      0 
+    PSCBE1 = 9.264e+08 
+    PSCBE2 =  1e-20 
+    PVAG =      0 
+    WR =      1 
+    DWG =      0 
+    DWB =      0 
+    XW =  2e-09 
+    XWREF =  2e-09 
+    XL = -3.5e-08 
+    XLREF = -3.5e-08 
+    B0 =      0 
+    B1 =      0 
+    ALPHA0 =      0 
+    ALPHA1 =   0.06 
+    AGIDL =  9e-08 
+    BGIDL = 2.3e+09 
+    CGIDL =    0.5 
+    PHIN =      0 
+    EGIDL =   0.53 
+    AIGC = 0.00606 
+    BIGC = 0.0007625 
+    CIGC =  1e-10 
+    AIGSD = 0.004566 
+    BIGSD =      0 
+    CIGSD = 0.002267 
+    AIGBACC = 0.01069 
+    BIGBACC = 0.003132 
+    CIGBACC = 0.1498 
+    AIGBINV =   0.35 
+    BIGBINV =   0.03 
+    CIGBINV =  0.006 
+    NIGC =      1 
+    NIGBINV =      1 
+    NIGBACC =  4.049 
+    NTOX =      1 
+    EIGBINV =    1.1 
+    PIGCD =    2.3 
+    POXEDGE =      1 
+    XRCRG1 =     12 
+    TNOIA =    1.5 
+    TNOIB =    3.5 
+    NTNOI =      1 
+    XRCRG2 =      1 
+    BETA0 =     12 
+    IJTHDFWD =   0.01 
+    IJTHSFWD =   0.01 
+    IJTHDREV =   0.01 
+    IJTHSREV =   0.01 
+    XJBVD =      1 
+    XJBVS =      1 
+    BVD =     10 
+    BVS =     10 
+    VFB =     -1 
+    GBMIN =  1e-12 
+    RBDB =     50 
+    RBPB =     50 
+    RBSB =     50 
+    RBPS =     50 
+    RBPD =     50 
+    CGSL = 1.896e-10 
+    CGDL = 1.896e-10 
+    CKAPPAS =    0.6 
+    CKAPPAD =    0.6 
+    CF = 1.38e-10 
+    CLC =  1e-07 
+    CLE =    0.6 
+    DWC =      0 
+    DLC = 1.525e-08 
+    DLCIG = 2.5e-09 
+    DWJ =      0 
+    VFBCV =     -1 
+    ACDE =    1.2 
+    MOIN =  11.09 
+    NOFF =  2.175 
+    VOFFCV = -0.03885 
+    DMCG = 9.25e-08 
+    DMCI = 9.25e-08 
+    DMDG =      0 
+    DMCGT =      0 
+    XGW =      0 
+    XGL =      0 
+    RSHG =    0.1 
+    NGCON =      1 
+    TCJ = 0.000854 
+    TPB = 0.0019 
+    TCJSW = 0.000357 
+    TPBSW = 0.0019 
+    TCJSWG = 0.00312 
+    TPBSWG = 0.0019 
+    SK0 =      0 
+    SK1 =      0 
+    SK2 =      0 
+    SL =  2e-06 
+    SW =  2e-06 
+    K =      0 
+    LCIT = 2.571e-10 
+    LNFACTOR = 2.064e-07 
+    LAT = -0.01381 
+    LAGS = 2.728e-07 
+    LKETA = 1.744e-08 
+    LKT1 = -8.17e-09 
+    LK2 = 8.66e-10 
+    LVTH0 = 2.726e-09 
+    LUA = -4.216e-17 
+    LUA1 = 1.188e-17 
+    LUB = -2.588e-26 
+    LUB1 = 1.305e-25 
+    LUC = 1.469e-18 
+    LU0 = -2.255e-10 
+    LUTE = 2.963e-08 
+    LVOFF = 2.799e-09 
+    LETA0 = 1.69e-09 
+    LETAB = -9.257e-10 
+    LPCLM = -2.657e-08 
+    WNFACTOR = 6.594e-07 
+    WAT = -0.002993 
+    WAGS = -1.02e-06 
+    WKETA = 3.365e-09 
+    WKT1 = -9.137e-09 
+    WK2 = -2.583e-10 
+    WVTH0 = 3.279e-09 
+    WUA = -2.311e-17 
+    WUA1 = 3.088e-16 
+    WUB = -1.152e-25 
+    WUB1 = -1.7e-26 
+    WUC = -1.624e-17 
+    WU0 = -4.079e-12 
+    WUTE = 1.254e-07 
+    WVOFF = 7.791e-09 
+    WETA0 = -3.739e-09 
+    WAIGSD = 6.71e-11 
+    PNFACTOR = -6.526e-14 
+    PAT = 1.799e-10 
+    PAGS = 2.039e-13 
+    PKETA = -6.73e-16 
+    PKT1 = 1.827e-15 
+    PK2 = -1.387e-16 
+    PVTH0 = -7.576e-16 
+    PUA = 4.307e-24 
+    PUA1 = -2.855e-25 
+    PUB = 8.566e-33 
+    PUB1 = -3.324e-32 
+    PUC = 1.937e-25 
+    PU0 = 9.381e-18 
+    PUTE = -8.035e-15 
+    PVOFF = -1.187e-15 
+    PETA0 = -2.039e-16 
+    TNOM =  298.1 
+    CGSO = 2.568e-11 
+    CGDO = 2.568e-11 
+    CGBO =      0 
+    XPART =      1 
+    RSH =   9.68 
+    JSS = 1.245e-07 
+    JSWS = 3.77e-13 
+    JSWGS =  3e-12 
+    PBS =    0.8 
+    MJS =   0.36 
+    PBSWS =    0.8 
+    MJSWS =   0.01 
+    CJS = 0.001204 
+    CJSWS = 6.336e-11 
+    NJS =      1 
+    PBSWGS =      1 
+    MJSWGS =   0.99 
+    CJSWGS = 3.802e-10 
+    XTIS =      3 
+    JSD = 1.245e-07 
+    JSWD = 3.77e-13 
+    JSWGD =  3e-12 
+    PBD =    0.8 
+    MJD =   0.36 
+    PBSWD =    0.8 
+    MJSWD =   0.01 
+    CJD = 0.001204 
+    CJSWD = 6.336e-11 
+    NJD =      1 
+    PBSWGD =      1 
+    MJSWGD =   0.99 
+    CJSWGD = 3.802e-10 
+    XTID =      3 
+    LMLT =      1 
+    WMLT =      1 
+    LINT = 2.5e-09 
+    LL =      0 
+    LLC =      0 
+    LLN =      1 
+    LW =      0 
+    LWC =      0 
+    LWN =      1 
+    LWL =      0 
+    LWLC =      0 
+    LMIN =  1e-07 
+    LMAX = 2.4e-07 
+    WINT =  5e-09 
+    WL =      0 
+    WLC =      0 
+    WLN =      1 
+    WW =      0 
+    WWC =      0 
+    WWN =      1 
+    WWL =      0 
+    WWLC =      0 
+    WMIN = 2.53e-07 
+    WMAX = 5.13e-07 
+    NOIA = 1.635e+42 
+    NOIB = 7.241e+26 
+    NOIC =   8.75 
+    EM = 1.5e+08 
+    EF =   1.19 
+    AF =      1 
+    KF =      0 
+    TRS =      0 
+    TRD =      0 
+    TEMPMOD  =      0 
+    LAMBDA   =      0 
+    VTL      =  2e+05 m/s
+    LC       =  5e-09 
+    XN       =      3 
+    LLAMBDA  =      0 
+    LVTL     =      0 
+    LXN      =      0 
+    WLAMBDA  =      0 
+    WVTL     =      0 
+    WXN      =      0 
+    PLAMBDA  =      0 
+    PVTL     =      0 
+    PXN      =      0 
+    RNOIA    =  0.577 
+    RNOIB    = 0.5164 
+    SAREF(SA0) = 6.3e-07 m
+    SBREF(SB0) = 6.3e-07 m
+    WLOD     =  8e-07 m
+    KU0      = 1.325e-07 1/m
+    KVSAT    =   -0.9 
+    KVTH0    = -1.5e-09 m
+    TKU0     =    0.1 
+    LLODKU0  =      1 
+    WLODKU0  =      1 
+    LLODVTH  =      2 
+    WLODVTH  =      1 
+    LKU0     = 1.33e-07 
+    WKU0     = 6.5e-07 
+    PKU0     =      0 
+    LKVTH0   = -1.68e-15 
+    WKVTH0   =  5e-07 
+    PKVTH0   =      0 
+    STK2     =  4e-10 
+    LODK2    =      2 
+    STETA0   =      0 
+    LODETA0  =      1 
+    LXRCRG1  =      0 
+    WXRCRG1  =      0 
+    PXRCRG1  =      0 
+    LXRCRG2  =      0 
+    WXRCRG2  =      0 
+    PXRCRG2  =      0 
+     *** UCB's BSIM4.4.0 new diode model is activated. ***
+    *** UCB's Diode Model Parameters ***
+    JTSS         =      0 
+    JTSSWS       =      0 
+    JTSSWGS      =      0 
+    JTSD         =      0 
+    JTSSWD       =      0 
+    JTSSWGD      =      0 
+    NJTS         =     20 
+    NJTSSW       =     20 
+    NJTSSWG      =     20 
+    XTSS         =   0.02 
+    XTSSWS       =   0.02 
+    XTSSWGS      =   0.02 
+    XTSD         =   0.02 
+    XTSSWD       =   0.02 
+    XTSSWGD      =   0.02 
+    TNJTS        =      0 
+    TNJTSSW      =      0 
+    TNJTSSWG     =      0 
+    VFBSDOFF     =      0 
+    LVFBSDOFF    =      0 
+    WVFBSDOFF    =      0 
+    PVFBSDOFF    =      0 
+    LINTNOI      =      0 
+    VTSS         =     10 
+    VTSD         =     10 
+    VTSSWS       =     10 
+    VTSSWD       =     10 
+    VTSSWGS      =     10 
+    VTSSWGD      =     10 
+    TTDIOMOD     =      1 
+ Model file: crn90g_2d5_lk_v1d2p1.l
+ Model line:        10422
+ Model Name: nch.20  
+ BSIM4 Model (Level 54)
+    MOBMOD = 0
+    BINUNIT = 2
+    PARAMCHK = 1
+    CAPMOD = 2
+    DIOMOD = 1
+    RDSMOD = 0
+    TRNQSMOD = 0
+    ACNQSMOD = 0
+    RBODYMOD = 0
+    RGATEMOD = 0
+    PERMOD = 1
+    GEOMOD = 0
+    RGEOMOD = 0
+    FNOIMOD = 1
+    TNOIMOD = 0
+    IGCMOD = 1
+    IGBMOD = 1
+    STIMOD = 1
+    VBFWDMOD = 0
+    VERSION =    4.4 
+    TOXREF =  3e-09 
+    TOXE = 2.33e-09 
+    TOXP = 2.03e-09 
+    TOXM = 2.33e-09 
+    DTOX =  3e-10 
+    EPSROX =    3.9 
+    CDSC =      0 
+    CDSCB =      0 
+    CDSCD =      0 
+    CIT = -0.0001229 
+    NFACTOR =    0.5 
+    XJ = 1.5e-07 
+    VSAT = 1.14e+05 
+    A0 =  2.375 
+    AGS =   0.95 
+    A1 =      0 
+    A2 =      1 
+    AT = 3.536e+04 
+    KETA = -0.04414 
+    NSUB =  6e+16 
+    NDEP = 8.369e+17 
+    NSD =  1e+20 
+    NGATE =  4e+20 
+    GAMMA1 =      0 
+    GAMMA2 =      0 
+    VBX =      0 
+    VBM =     -3 
+    XT = 1.55e-07 
+    K1 = 0.3006 
+    KT1 = -0.2624 
+    KT1L =      0 
+    KT2 = -0.04464 
+    K2 = -0.01056 
+    K3 = -2.957 
+    K3B =    1.2 
+    LPE0 = 4.45e-08 
+    LPEB =      0 
+    DVTP0 =  4e-07 
+    DVTP1 =      2 
+    W0 = -5e-08 
+    DVT0 =   13.9 
+    DVT1 =   1.25 
+    DVT2 =      0 
+    DVT0W =      0 
+    DVT1W =      0 
+    DVT2W =      0 
+    DROUT =      0 
+    DSUB =    0.5 
+    VTH0 =    0.2 
+    EU =   1.67 
+    UA = -6.284e-10 
+    UA1 = 2.684e-09 
+    UB = 9.297e-19 
+    UB1 = -3.673e-18 
+    UC = 5.898e-11 
+    UC1 = -1.646e-10 
+    U0 = 0.02965 
+    UTE = -1.329 
+    VOFF = -0.1638 
+    VOFFL =      0 
+    MINV =      0 
+    FPROUT =    200 
+    PDITS =      0 
+    PDITSD =      0 
+    PDITSL =      0 
+    DELTA = 0.0075 
+    RDSW =    140 
+    RDSWMIN =      0 
+    RDWMIN =      0 
+    RSWMIN =      0 
+    RDW =    100 
+    RSW =    100 
+    PRWG =      0 
+    PRWB =      0 
+    PRT =      0 
+    ETA0 = 0.2198 
+    ETAB =   -0.1 
+    PCLM = 0.8795 
+    PDIBLC1 =      0 
+    PDIBLC2 = 0.0001 
+    PDIBLCB =      0 
+    PSCBE1 = 9.264e+08 
+    PSCBE2 =  1e-20 
+    PVAG =    1.5 
+    WR =      1 
+    DWG =      0 
+    DWB =      0 
+    XW = 1.8e-08 
+    XWREF = 1.8e-08 
+    XL = -3.5e-08 
+    XLREF = -3.5e-08 
+    B0 =      0 
+    B1 =      0 
+    ALPHA0 =      0 
+    ALPHA1 =   0.03 
+    AGIDL =  9e-08 
+    BGIDL = 2.3e+09 
+    CGIDL =    0.5 
+    PHIN =      0 
+    EGIDL =   0.53 
+    AIGC = 0.0103 
+    BIGC = 0.001525 
+    CIGC =      0 
+    AIGSD = 0.00845 
+    BIGSD = 0.0004021 
+    CIGSD = 0.001463 
+    AIGBACC = 0.01134 
+    BIGBACC = 0.003249 
+    CIGBACC = 0.1416 
+    AIGBINV =   0.35 
+    BIGBINV =   0.03 
+    CIGBINV =  0.006 
+    NIGC =      1 
+    NIGBINV =      1 
+    NIGBACC =   4.05 
+    NTOX =      1 
+    EIGBINV =    1.1 
+    PIGCD =    2.3 
+    POXEDGE =      1 
+    XRCRG1 =     12 
+    TNOIA =    1.5 
+    TNOIB =    3.5 
+    NTNOI =      1 
+    XRCRG2 =      1 
+    BETA0 =    8.7 
+    IJTHDFWD =   0.01 
+    IJTHSFWD =   0.01 
+    IJTHDREV =   0.01 
+    IJTHSREV =   0.01 
+    XJBVD =      1 
+    XJBVS =      1 
+    BVD =     10 
+    BVS =     10 
+    VFB =     -1 
+    GBMIN =  1e-12 
+    RBDB =     50 
+    RBPB =     50 
+    RBSB =     50 
+    RBPS =     50 
+    RBPD =     50 
+    CGSL = 6.514e-11 
+    CGDL = 6.514e-11 
+    CKAPPAS =    0.6 
+    CKAPPAD =    0.6 
+    CF = 1.38e-10 
+    CLC =  1e-07 
+    CLE =    0.6 
+    DWC =      0 
+    DLC = 1.172e-08 
+    DLCIG = 2.5e-09 
+    DWJ =      0 
+    VFBCV =     -1 
+    ACDE =    1.2 
+    MOIN =   12.6 
+    NOFF =  1.686 
+    VOFFCV = -0.05472 
+    DMCG = 9.25e-08 
+    DMCI = 9.25e-08 
+    DMDG =      0 
+    DMCGT =      0 
+    XGW =      0 
+    XGL =      0 
+    RSHG =    0.1 
+    NGCON =      1 
+    TCJ = 0.000732 
+    TPB =  0.001 
+    TCJSW = 0.000357 
+    TPBSW = 0.0019 
+    TCJSWG = 0.000357 
+    TPBSWG = 0.0019 
+    SK0 =      0 
+    SK1 =      0 
+    SK2 =      0 
+    SL =  2e-06 
+    SW =  2e-06 
+    K =      0 
+    LCIT = 2.246e-10 
+    LAT = 0.001929 
+    LKETA = 3.429e-09 
+    LK1 = 4.495e-09 
+    LKT1 = -1.62e-09 
+    LK2 = -9.879e-10 
+    LK3 = 1.543e-08 
+    LVTH0 = -1.36e-09 
+    LUB = 2.186e-26 
+    LUC = -5.944e-19 
+    LUC1 = 6.025e-18 
+    LUTE = 6.032e-09 
+    LVOFF = -9.004e-10 
+    LPCLM = -7.907e-09 
+    WK1 = 2.765e-09 
+    WK2 = -1.245e-09 
+    WVTH0 = -2.4e-09 
+    WUB = 3.583e-26 
+    WUC = 3.74e-18 
+    WU0 = -4.483e-10 
+    WUTE = 7.045e-09 
+    WVOFF = 6.561e-09 
+    WETA0 = -1.818e-08 
+    WPCLM = -9.607e-09 
+    PVSAT = -4e-11 
+    PK1 = -5.529e-16 
+    PK2 = 4.483e-16 
+    PVTH0 = -1.04e-16 
+    PUB = 8.54e-34 
+    PUC = 3.883e-25 
+    PUTE = 5.337e-16 
+    PVOFF = -1.985e-16 
+    PETA0 = 2.4e-16 
+    PPCLM = 1.921e-15 
+    TNOM =  298.1 
+    CGSO = 1.209e-10 
+    CGDO = 1.209e-10 
+    CGBO =      0 
+    XPART =      1 
+    RSH =   10.5 
+    JSS = 1.77e-07 
+    JSWS = 4.23e-13 
+    JSWGS =  9e-12 
+    PBS =    0.5 
+    MJS =   0.25 
+    PBSWS =    0.8 
+    MJSWS =   0.01 
+    CJS = 0.0009251 
+    CJSWS = 3.776e-11 
+    NJS =      1 
+    PBSWGS =   0.78 
+    MJSWGS =   0.52 
+    CJSWGS = 3.493e-10 
+    XTIS =      3 
+    JSD = 1.77e-07 
+    JSWD = 4.23e-13 
+    JSWGD =  9e-12 
+    PBD =    0.5 
+    MJD =   0.25 
+    PBSWD =    0.8 
+    MJSWD =   0.01 
+    CJD = 0.0009251 
+    CJSWD = 3.776e-11 
+    NJD =      1 
+    PBSWGD =   0.78 
+    MJSWGD =   0.52 
+    CJSWGD = 3.493e-10 
+    XTID =      3 
+    LMLT =      1 
+    WMLT =      1 
+    LINT = 2.5e-09 
+    LL =      0 
+    LLC =      0 
+    LLN =      1 
+    LW =      0 
+    LWC =      0 
+    LWN =      1 
+    LWL =      0 
+    LWLC =      0 
+    LMIN =  1e-07 
+    LMAX = 2.4e-07 
+    WINT =  6e-09 
+    WL =      0 
+    WLC =      0 
+    WLN =      1 
+    WW =      0 
+    WWC =      0 
+    WWN =      1 
+    WWL =      0 
+    WWLC =      0 
+    WMIN = 1.2e-07 
+    WMAX = 2.37e-07 
+    NOIA = 4.293e+41 
+    NOIB = 1.612e+24 
+    NOIC =   8.75 
+    EM = 1.192e+07 
+    EF = 0.8841 
+    AF =      1 
+    KF =      0 
+    TRS =      0 
+    TRD =      0 
+    TEMPMOD  =      0 
+    LAMBDA   =      0 
+    VTL      =  2e+05 m/s
+    LC       =  5e-09 
+    XN       =      3 
+    LLAMBDA  =      0 
+    LVTL     =      0 
+    LXN      =      0 
+    WLAMBDA  =      0 
+    WVTL     =      0 
+    WXN      =      0 
+    PLAMBDA  =      0 
+    PVTL     =      0 
+    PXN      =      0 
+    RNOIA    =  0.577 
+    RNOIB    = 0.5164 
+    SAREF(SA0) = 6.3e-07 m
+    SBREF(SB0) = 6.3e-07 m
+    WLOD     =  8e-07 m
+    KU0      = -7.36e-08 1/m
+    KVSAT    =    0.2 
+    KVTH0    = 3.5e-09 m
+    TKU0     =   0.01 
+    LLODKU0  =      1 
+    WLODKU0  =      1 
+    LLODVTH  =      1 
+    WLODVTH  =      1 
+    LKU0     = 4.027e-07 
+    WKU0     =  8e-07 
+    PKU0     = -2e-13 
+    LKVTH0   = -2.68e-11 
+    WKVTH0   = 1.5e-06 
+    PKVTH0   =      0 
+    STK2     = 1.35e-09 
+    LODK2    =    0.5 
+    STETA0   =      0 
+    LODETA0  =      1 
+    LXRCRG1  =      0 
+    WXRCRG1  =      0 
+    PXRCRG1  =      0 
+    LXRCRG2  =      0 
+    WXRCRG2  =      0 
+    PXRCRG2  =      0 
+     *** UCB's BSIM4.4.0 new diode model is activated. ***
+    *** UCB's Diode Model Parameters ***
+    JTSS         =      0 
+    JTSSWS       =      0 
+    JTSSWGS      =      0 
+    JTSD         =      0 
+    JTSSWD       =      0 
+    JTSSWGD      =      0 
+    NJTS         =     20 
+    NJTSSW       =     20 
+    NJTSSWG      =     20 
+    XTSS         =   0.02 
+    XTSSWS       =   0.02 
+    XTSSWGS      =   0.02 
+    XTSD         =   0.02 
+    XTSSWD       =   0.02 
+    XTSSWGD      =   0.02 
+    TNJTS        =      0 
+    TNJTSSW      =      0 
+    TNJTSSWG     =      0 
+    VFBSDOFF     =      0 
+    LVFBSDOFF    =      0 
+    WVFBSDOFF    =      0 
+    PVFBSDOFF    =      0 
+    LINTNOI      =      0 
+    VTSS         =     10 
+    VTSD         =     10 
+    VTSSWS       =     10 
+    VTSSWD       =     10 
+    VTSSWGS      =     10 
+    VTSSWGD      =     10 
+    TTDIOMOD     =      1 
+*** info *** index=1 is a nominal sample in Monte Carlo.
+*** info *** The MCG Random Number Generator and .Option Use_Agauss_Format = Yes are set as defaults starting with HSPICE L-2016.06 to address the needs of advanced technology nodes with large samples and/or large circuits, particularly for distributed processing.
+*** Should you want backward compatibility, please use the following options:
+For traditional Gaussian style variations, use .Option Random_Generator = 3LC;
+For Variation Block style variations, use .Option Random_Generator = MOA.
+  
+      
+
+MONTE CARLO DEFINITIONS
+
+
+Option sampling_method was set, variation block and agauss format variation are in effect.
+
+Random number generator is MCG            , and seed =      1, stream =   1
+ **info** set option symb=1 internally to help for convergence.
+ *****************************************************************
+ ******  option summary
+ ******
+ runlvl  = 3         bypass  = 2.0000    
+  Opening plot unit= 79
+ file=G:\trm2\vlsi\CA3\KSA.pa0
+
+
+ **info** rebuilding matrix with pivot option
+
+
+   *** monte carlo  index =                       1 ***
+
+ ******
+ * 8-bit kogge-stone adder design
+
+ ****** transient analysis tnom=  25.000 temp=  25.000 ******
+ tpd_max_cout= 498.1319p  targ=   2.7057n   trig=   2.2076n
+ tpd_max_s8=-713.4730p  targ=   1.4941n   trig=   2.2076n
+ power_avg= -87.3182u  from=   0.             to=  20.0000n
+
+          ***** job concluded
+
+   *** monte carlo  index =                       2 ***
+
+ tpd_max_cout= 555.2256p  targ=   2.7622n   trig=   2.2070n
+ tpd_max_s8=-669.8316p  targ=   1.5371n   trig=   2.2070n
+ power_avg= -71.4954u  from=   0.             to=  20.0000n
+
+          ***** job concluded
+
+   *** monte carlo  index =                       3 ***
+
+ tpd_max_cout= 557.3169p  targ=   2.7643n   trig=   2.2069n
+ tpd_max_s8=-668.0500p  targ=   1.5389n   trig=   2.2069n
+ power_avg= -70.9596u  from=   0.             to=  20.0000n
+
+          ***** job concluded
+
+   *** monte carlo  index =                       4 ***
+
+ tpd_max_cout= 515.3834p  targ=   2.7228n   trig=   2.2074n
+ tpd_max_s8=-700.4120p  targ=   1.5070n   trig=   2.2074n
+ power_avg= -81.9023u  from=   0.             to=  20.0000n
+
+          ***** job concluded
+
+   *** monte carlo  index =                       5 ***
+
+ tpd_max_cout= 485.4956p  targ=   2.6932n   trig=   2.2077n
+ tpd_max_s8=-723.2727p  targ=   1.4845n   trig=   2.2077n
+ power_avg= -91.8139u  from=   0.             to=  20.0000n
+
+          ***** job concluded
+
+   *** monte carlo  index =                       6 ***
+
+ tpd_max_cout= 418.6426p  targ=   2.6275n   trig=   2.2088n
+ tpd_max_s8=-774.4521p  targ=   1.4344n   trig=   2.2088n
+ power_avg=-125.2119u  from=   0.             to=  20.0000n
+
+          ***** job concluded
+
+   *** monte carlo  index =                       7 ***
+
+ tpd_max_cout= 450.6857p  targ=   2.6589n   trig=   2.2083n
+ tpd_max_s8=-749.9787p  targ=   1.4583n   trig=   2.2083n
+ power_avg=-106.7047u  from=   0.             to=  20.0000n
+
+          ***** job concluded
+
+   *** monte carlo  index =                       8 ***
+
+ tpd_max_cout= 486.2826p  targ=   2.6940n   trig=   2.2077n
+ tpd_max_s8=-722.6713p  targ=   1.4851n   trig=   2.2077n
+ power_avg= -91.5392u  from=   0.             to=  20.0000n
+
+          ***** job concluded
+
+   *** monte carlo  index =                       9 ***
+
+ tpd_max_cout= 443.8398p  targ=   2.6522n   trig=   2.2084n
+ tpd_max_s8=-755.0362p  targ=   1.4533n   trig=   2.2084n
+ power_avg=-110.0918u  from=   0.             to=  20.0000n
+
+          ***** job concluded
+
+   *** monte carlo  index =                      10 ***
+
+ tpd_max_cout= 655.7162p  targ=   2.8619n   trig=   2.2062n
+ tpd_max_s8=-591.7440p  targ=   1.6145n   trig=   2.2062n
+ power_avg= -53.6565u  from=   0.             to=  20.0000n
+
+          ***** job concluded
+
+   *** monte carlo  index =                      11 ***
+
+ tpd_max_cout= 383.7785p  targ=   2.5935n   trig=   2.2097n
+ tpd_max_s8=-801.3282p  targ=   1.4083n   trig=   2.2097n
+ power_avg=-153.8114u  from=   0.             to=  20.0000n
+
+          ***** job concluded
+
+   *** monte carlo  index =                      12 ***
+
+ tpd_max_cout= 461.9415p  targ=   2.6700n   trig=   2.2081n
+ tpd_max_s8=-741.3326p  targ=   1.4667n   trig=   2.2081n
+ power_avg=-101.3714u  from=   0.             to=  20.0000n
+
+          ***** job concluded
+
+   *** monte carlo  index =                      13 ***
+
+ tpd_max_cout= 597.7037p  targ=   2.8043n   trig=   2.2066n
+ tpd_max_s8=-637.0897p  targ=   1.5695n   trig=   2.2066n
+ power_avg= -62.8095u  from=   0.             to=  20.0000n
+
+          ***** job concluded
+
+   *** monte carlo  index =                      14 ***
+
+ tpd_max_cout= 531.0776p  targ=   2.7383n   trig=   2.2072n
+ tpd_max_s8=-688.1849p  targ=   1.5190n   trig=   2.2072n
+ power_avg= -77.4125u  from=   0.             to=  20.0000n
+
+          ***** job concluded
+
+   *** monte carlo  index =                      15 ***
+
+ tpd_max_cout= 472.2648p  targ=   2.6802n   trig=   2.2079n
+ tpd_max_s8=-733.1383p  targ=   1.4748n   trig=   2.2079n
+ power_avg= -96.8451u  from=   0.             to=  20.0000n
+
+          ***** job concluded
+
+   *** monte carlo  index =                      16 ***
+
+ tpd_max_cout= 479.5188p  targ=   2.6873n   trig=   2.2078n
+ tpd_max_s8=-727.8612p  targ=   1.4800n   trig=   2.2078n
+ power_avg= -94.0661u  from=   0.             to=  20.0000n
+
+          ***** job concluded
+
+   *** monte carlo  index =                      17 ***
+
+ tpd_max_cout= 427.6042p  targ=   2.6363n   trig=   2.2087n
+ tpd_max_s8=-767.5815p  targ=   1.4411n   trig=   2.2087n
+ power_avg=-119.3146u  from=   0.             to=  20.0000n
+
+          ***** job concluded
+
+   *** monte carlo  index =                      18 ***
+
+ tpd_max_cout= 533.0838p  targ=   2.7403n   trig=   2.2072n
+ tpd_max_s8=-686.7339p  targ=   1.5204n   trig=   2.2072n
+ power_avg= -76.8844u  from=   0.             to=  20.0000n
+
+          ***** job concluded
+
+   *** monte carlo  index =                      19 ***
+
+ tpd_max_cout= 522.7345p  targ=   2.7300n   trig=   2.2073n
+ tpd_max_s8=-694.5793p  targ=   1.5127n   trig=   2.2073n
+ power_avg= -79.7027u  from=   0.             to=  20.0000n
+
+          ***** job concluded
+
+   *** monte carlo  index =                      20 ***
+
+ tpd_max_cout= 467.2833p  targ=   2.6753n   trig=   2.2080n
+ tpd_max_s8=-737.1354p  targ=   1.4709n   trig=   2.2080n
+ power_avg= -99.0765u  from=   0.             to=  20.0000n
+
+          ***** job concluded
+
+   *** monte carlo  index =                      21 ***
+
+ tpd_max_cout= 478.3834p  targ=   2.6862n   trig=   2.2078n
+ tpd_max_s8=-728.7297p  targ=   1.4791n   trig=   2.2078n
+ power_avg= -94.4766u  from=   0.             to=  20.0000n
+
+          ***** job concluded
+
+   *** monte carlo  index =                      22 ***
+
+ tpd_max_cout= 481.2417p  targ=   2.6890n   trig=   2.2078n
+ tpd_max_s8=-726.5376p  targ=   1.4813n   trig=   2.2078n
+ power_avg= -93.4156u  from=   0.             to=  20.0000n
+
+          ***** job concluded
+
+   *** monte carlo  index =                      23 ***
+
+ tpd_max_cout= 509.6205p  targ=   2.7171n   trig=   2.2074n
+ tpd_max_s8=-704.5887p  targ=   1.5028n   trig=   2.2074n
+ power_avg= -83.5855u  from=   0.             to=  20.0000n
+
+          ***** job concluded
+
+   *** monte carlo  index =                      24 ***
+
+ tpd_max_cout= 452.8305p  targ=   2.6610n   trig=   2.2082n
+ tpd_max_s8=-748.2760p  targ=   1.4599n   trig=   2.2082n
+ power_avg=-105.5965u  from=   0.             to=  20.0000n
+
+          ***** job concluded
+
+   *** monte carlo  index =                      25 ***
+
+ tpd_max_cout= 550.5020p  targ=   2.7575n   trig=   2.2070n
+ tpd_max_s8=-673.4093p  targ=   1.5336n   trig=   2.2070n
+ power_avg= -72.5579u  from=   0.             to=  20.0000n
+
+          ***** job concluded
+
+   *** monte carlo  index =                      26 ***
+
+ tpd_max_cout= 594.8082p  targ=   2.8014n   trig=   2.2066n
+ tpd_max_s8=-639.2902p  targ=   1.5673n   trig=   2.2066n
+ power_avg= -63.3687u  from=   0.             to=  20.0000n
+
+          ***** job concluded
+
+   *** monte carlo  index =                      27 ***
+
+ tpd_max_cout= 461.2614p  targ=   2.6693n   trig=   2.2081n
+ tpd_max_s8=-741.8580p  targ=   1.4662n   trig=   2.2081n
+ power_avg=-101.6871u  from=   0.             to=  20.0000n
+
+          ***** job concluded
+
+   *** monte carlo  index =                      28 ***
+
+ tpd_max_cout= 464.0938p  targ=   2.6721n   trig=   2.2080n
+ tpd_max_s8=-739.6251p  targ=   1.4684n   trig=   2.2080n
+ power_avg=-100.4095u  from=   0.             to=  20.0000n
+
+          ***** job concluded
+
+   *** monte carlo  index =                      29 ***
+
+ tpd_max_cout= 589.6864p  targ=   2.7964n   trig=   2.2067n
+ tpd_max_s8=-643.2620p  targ=   1.5634n   trig=   2.2067n
+ power_avg= -64.2789u  from=   0.             to=  20.0000n
+
+          ***** job concluded
+
+   *** monte carlo  index =                      30 ***
+
+ tpd_max_cout= 476.1090p  targ=   2.6840n   trig=   2.2079n
+ tpd_max_s8=-730.4441p  targ=   1.4774n   trig=   2.2079n
+ power_avg= -95.3753u  from=   0.             to=  20.0000n
+
+          ***** job concluded
+
+   *** monte carlo  index =                      31 ***
+
+ tpd_max_cout= 447.4936p  targ=   2.6558n   trig=   2.2083n
+ tpd_max_s8=-752.6197p  targ=   1.4557n   trig=   2.2083n
+ power_avg=-108.4163u  from=   0.             to=  20.0000n
+
+          ***** job concluded
+
+   *** monte carlo  index =                      32 ***
+
+ tpd_max_cout= 666.4229p  targ=   2.8726n   trig=   2.2061n
+ tpd_max_s8=-583.3094p  targ=   1.6228n   trig=   2.2061n
+ power_avg= -52.1798u  from=   0.             to=  20.0000n
+
+          ***** job concluded
+
+   *** monte carlo  index =                      33 ***
+
+ tpd_max_cout= 464.3871p  targ=   2.6724n   trig=   2.2080n
+ tpd_max_s8=-739.3979p  targ=   1.4686n   trig=   2.2080n
+ power_avg=-100.2727u  from=   0.             to=  20.0000n
+
+          ***** job concluded
+
+   *** monte carlo  index =                      34 ***
+
+ tpd_max_cout= 455.1698p  targ=   2.6634n   trig=   2.2082n
+ tpd_max_s8=-746.5846p  targ=   1.4616n   trig=   2.2082n
+ power_avg=-104.6108u  from=   0.             to=  20.0000n
+
+          ***** job concluded
+
+   *** monte carlo  index =                      35 ***
+
+ tpd_max_cout= 483.7733p  targ=   2.6915n   trig=   2.2078n
+ tpd_max_s8=-724.5943p  targ=   1.4832n   trig=   2.2078n
+ power_avg= -92.4309u  from=   0.             to=  20.0000n
+
+          ***** job concluded
+
+   *** monte carlo  index =                      36 ***
+
+ tpd_max_cout= 602.4066p  targ=   2.8090n   trig=   2.2066n
+ tpd_max_s8=-633.4605p  targ=   1.5731n   trig=   2.2066n
+ power_avg= -61.9934u  from=   0.             to=  20.0000n
+
+          ***** job concluded
+
+   *** monte carlo  index =                      37 ***
+
+ tpd_max_cout= 453.2970p  targ=   2.6615n   trig=   2.2082n
+ tpd_max_s8=-747.8368p  targ=   1.4604n   trig=   2.2082n
+ power_avg=-105.3761u  from=   0.             to=  20.0000n
+
+          ***** job concluded
+
+   *** monte carlo  index =                      38 ***
+
+ tpd_max_cout= 748.4858p  targ=   2.9542n   trig=   2.2057n
+ tpd_max_s8=-518.1007p  targ=   1.6876n   trig=   2.2057n
+ power_avg= -42.7837u  from=   0.             to=  20.0000n
+
+          ***** job concluded
+
+   *** monte carlo  index =                      39 ***
+
+ tpd_max_cout= 599.7142p  targ=   2.8063n   trig=   2.2066n
+ tpd_max_s8=-635.7770p  targ=   1.5708n   trig=   2.2066n
+ power_avg= -62.5713u  from=   0.             to=  20.0000n
+
+          ***** job concluded
+
+   *** monte carlo  index =                      40 ***
+
+ tpd_max_cout= 472.0250p  targ=   2.6799n   trig=   2.2079n
+ tpd_max_s8=-733.3173p  targ=   1.4746n   trig=   2.2079n
+ power_avg= -96.9065u  from=   0.             to=  20.0000n
+
+          ***** job concluded
+
+   *** monte carlo  index =                      41 ***
+
+ tpd_max_cout= 458.2655p  targ=   2.6664n   trig=   2.2081n
+ tpd_max_s8=-743.7824p  targ=   1.4643n   trig=   2.2081n
+ power_avg=-102.8487u  from=   0.             to=  20.0000n
+
+          ***** job concluded
+
+   *** monte carlo  index =                      42 ***
+
+ tpd_max_cout= 548.6772p  targ=   2.7557n   trig=   2.2070n
+ tpd_max_s8=-674.7836p  targ=   1.5322n   trig=   2.2070n
+ power_avg= -73.0048u  from=   0.             to=  20.0000n
+
+          ***** job concluded
+
+   *** monte carlo  index =                      43 ***
+
+ tpd_max_cout= 511.7814p  targ=   2.7192n   trig=   2.2074n
+ tpd_max_s8=-702.9651p  targ=   1.5044n   trig=   2.2074n
+ power_avg= -82.9327u  from=   0.             to=  20.0000n
+
+          ***** job concluded
+
+   *** monte carlo  index =                      44 ***
+
+ tpd_max_cout= 533.2135p  targ=   2.7404n   trig=   2.2072n
+ tpd_max_s8=-686.6444p  targ=   1.5205n   trig=   2.2072n
+ power_avg= -76.8558u  from=   0.             to=  20.0000n
+
+          ***** job concluded
+
+   *** monte carlo  index =                      45 ***
+
+ tpd_max_cout= 629.5447p  targ=   2.8359n   trig=   2.2064n
+ tpd_max_s8=-612.1908p  targ=   1.5942n   trig=   2.2064n
+ power_avg= -57.4973u  from=   0.             to=  20.0000n
+
+          ***** job concluded
+
+   *** monte carlo  index =                      46 ***
+
+ tpd_max_cout= 425.5252p  targ=   2.6342n   trig=   2.2087n
+ tpd_max_s8=-769.1668p  targ=   1.4395n   trig=   2.2087n
+ power_avg=-120.6567u  from=   0.             to=  20.0000n
+
+          ***** job concluded
+
+   *** monte carlo  index =                      47 ***
+
+ tpd_max_cout= 412.7128p  targ=   2.6217n   trig=   2.2090n
+ tpd_max_s8=-779.0754p  targ=   1.4299n   trig=   2.2090n
+ power_avg=-129.4060u  from=   0.             to=  20.0000n
+
+          ***** job concluded
+
+   *** monte carlo  index =                      48 ***
+
+ tpd_max_cout= 514.1614p  targ=   2.7215n   trig=   2.2074n
+ tpd_max_s8=-701.2824p  targ=   1.5061n   trig=   2.2074n
+ power_avg= -82.2597u  from=   0.             to=  20.0000n
+
+          ***** job concluded
+
+   *** monte carlo  index =                      49 ***
+
+ tpd_max_cout= 416.8270p  targ=   2.6257n   trig=   2.2089n
+ tpd_max_s8=-775.9606p  targ=   1.4329n   trig=   2.2089n
+ power_avg=-126.4508u  from=   0.             to=  20.0000n
+
+          ***** job concluded
+
+   *** monte carlo  index =                      50 ***
+
+ tpd_max_cout= 542.7871p  targ=   2.7499n   trig=   2.2071n
+ tpd_max_s8=-679.1845p  targ=   1.5279n   trig=   2.2071n
+ power_avg= -74.4236u  from=   0.             to=  20.0000n
+
+          ***** job concluded
+
+   *** monte carlo  index =                      51 ***
+
+ tpd_max_cout= 473.9354p  targ=   2.6818n   trig=   2.2079n
+ tpd_max_s8=-732.1252p  targ=   1.4758n   trig=   2.2079n
+ power_avg= -96.2949u  from=   0.             to=  20.0000n
+
+          ***** job concluded
+
+   *** monte carlo  index =                      52 ***
+
+ tpd_max_cout= 608.4843p  targ=   2.8150n   trig=   2.2065n
+ tpd_max_s8=-628.5722p  targ=   1.5780n   trig=   2.2065n
+ power_avg= -60.8921u  from=   0.             to=  20.0000n
+
+          ***** job concluded
+
+   *** monte carlo  index =                      53 ***
+
+ tpd_max_cout= 546.4416p  targ=   2.7535n   trig=   2.2070n
+ tpd_max_s8=-676.4202p  targ=   1.5306n   trig=   2.2070n
+ power_avg= -73.5018u  from=   0.             to=  20.0000n
+
+          ***** job concluded
+
+   *** monte carlo  index =                      54 ***
+
+ tpd_max_cout= 568.7928p  targ=   2.7756n   trig=   2.2068n
+ tpd_max_s8=-659.1960p  targ=   1.5476n   trig=   2.2068n
+ power_avg= -68.4322u  from=   0.             to=  20.0000n
+
+          ***** job concluded
+
+   *** monte carlo  index =                      55 ***
+
+ tpd_max_cout= 476.0787p  targ=   2.6839n   trig=   2.2079n
+ tpd_max_s8=-730.4665p  targ=   1.4774n   trig=   2.2079n
+ power_avg= -95.3868u  from=   0.             to=  20.0000n
+
+          ***** job concluded
+
+   *** monte carlo  index =                      56 ***
+
+ tpd_max_cout= 461.3964p  targ=   2.6695n   trig=   2.2081n
+ tpd_max_s8=-741.7535p  targ=   1.4663n   trig=   2.2081n
+ power_avg=-101.6291u  from=   0.             to=  20.0000n
+
+          ***** job concluded
+
+   *** monte carlo  index =                      57 ***
+
+ tpd_max_cout= 421.0727p  targ=   2.6299n   trig=   2.2088n
+ tpd_max_s8=-772.5741p  targ=   1.4362n   trig=   2.2088n
+ power_avg=-123.5280u  from=   0.             to=  20.0000n
+
+          ***** job concluded
+
+   *** monte carlo  index =                      58 ***
+
+ tpd_max_cout= 525.2917p  targ=   2.7326n   trig=   2.2073n
+ tpd_max_s8=-692.6843p  targ=   1.5146n   trig=   2.2073n
+ power_avg= -79.0020u  from=   0.             to=  20.0000n
+
+          ***** job concluded
+
+   *** monte carlo  index =                      59 ***
+
+ tpd_max_cout= 457.2958p  targ=   2.6654n   trig=   2.2081n
+ tpd_max_s8=-744.4301p  targ=   1.4637n   trig=   2.2081n
+ power_avg=-103.2637u  from=   0.             to=  20.0000n
+
+          ***** job concluded
+
+   *** monte carlo  index =                      60 ***
+
+ tpd_max_cout= 442.8814p  targ=   2.6513n   trig=   2.2084n
+ tpd_max_s8=-755.8363p  targ=   1.4525n   trig=   2.2084n
+ power_avg=-110.6095u  from=   0.             to=  20.0000n
+
+          ***** job concluded
+
+   *** monte carlo  index =                      61 ***
+
+ tpd_max_cout= 469.6081p  targ=   2.6776n   trig=   2.2080n
+ tpd_max_s8=-735.4657p  targ=   1.4725n   trig=   2.2080n
+ power_avg= -98.0441u  from=   0.             to=  20.0000n
+
+          ***** job concluded
+
+   *** monte carlo  index =                      62 ***
+
+ tpd_max_cout= 546.0112p  targ=   2.7531n   trig=   2.2071n
+ tpd_max_s8=-676.8144p  targ=   1.5302n   trig=   2.2071n
+ power_avg= -73.6222u  from=   0.             to=  20.0000n
+
+          ***** job concluded
+
+   *** monte carlo  index =                      63 ***
+
+ tpd_max_cout= 486.4672p  targ=   2.6942n   trig=   2.2077n
+ tpd_max_s8=-722.5325p  targ=   1.4852n   trig=   2.2077n
+ power_avg= -91.4631u  from=   0.             to=  20.0000n
+
+          ***** job concluded
+
+   *** monte carlo  index =                      64 ***
+
+ tpd_max_cout= 569.1947p  targ=   2.7760n   trig=   2.2068n
+ tpd_max_s8=-658.8846p  targ=   1.5480n   trig=   2.2068n
+ power_avg= -68.3423u  from=   0.             to=  20.0000n
+
+          ***** job concluded
+
+   *** monte carlo  index =                      65 ***
+
+ tpd_max_cout= 604.3475p  targ=   2.8109n   trig=   2.2066n
+ tpd_max_s8=-631.9138p  targ=   1.5746n   trig=   2.2066n
+ power_avg= -61.6675u  from=   0.             to=  20.0000n
+
+          ***** job concluded
+
+   *** monte carlo  index =                      66 ***
+
+ tpd_max_cout= 528.2977p  targ=   2.7355n   trig=   2.2072n
+ tpd_max_s8=-690.2142p  targ=   1.5170n   trig=   2.2072n
+ power_avg= -78.1507u  from=   0.             to=  20.0000n
+
+          ***** job concluded
+
+   *** monte carlo  index =                      67 ***
+
+ tpd_max_cout= 562.8366p  targ=   2.7697n   trig=   2.2069n
+ tpd_max_s8=-664.0877p  targ=   1.5428n   trig=   2.2069n
+ power_avg= -69.7814u  from=   0.             to=  20.0000n
+
+          ***** job concluded
+
+   *** monte carlo  index =                      68 ***
+
+ tpd_max_cout= 609.8698p  targ=   2.8164n   trig=   2.2065n
+ tpd_max_s8=-627.4880p  targ=   1.5790n   trig=   2.2065n
+ power_avg= -60.6814u  from=   0.             to=  20.0000n
+
+          ***** job concluded
+
+   *** monte carlo  index =                      69 ***
+
+ tpd_max_cout= 541.1402p  targ=   2.7482n   trig=   2.2071n
+ tpd_max_s8=-680.3131p  targ=   1.5268n   trig=   2.2071n
+ power_avg= -74.7713u  from=   0.             to=  20.0000n
+
+          ***** job concluded
+
+   *** monte carlo  index =                      70 ***
+
+ tpd_max_cout= 528.1420p  targ=   2.7354n   trig=   2.2072n
+ tpd_max_s8=-690.5934p  targ=   1.5166n   trig=   2.2072n
+ power_avg= -78.2949u  from=   0.             to=  20.0000n
+
+          ***** job concluded
+
+   *** monte carlo  index =                      71 ***
+
+ tpd_max_cout= 427.8460p  targ=   2.6365n   trig=   2.2087n
+ tpd_max_s8=-767.3969p  targ=   1.4413n   trig=   2.2087n
+ power_avg=-119.2226u  from=   0.             to=  20.0000n
+
+          ***** job concluded
+
+   *** monte carlo  index =                      72 ***
+
+ tpd_max_cout= 514.6432p  targ=   2.7220n   trig=   2.2074n
+ tpd_max_s8=-700.9321p  targ=   1.5064n   trig=   2.2074n
+ power_avg= -82.1083u  from=   0.             to=  20.0000n
+
+          ***** job concluded
+
+   *** monte carlo  index =                      73 ***
+
+ tpd_max_cout= 415.0687p  targ=   2.6240n   trig=   2.2089n
+ tpd_max_s8=-777.2313p  targ=   1.4317n   trig=   2.2089n
+ power_avg=-127.6426u  from=   0.             to=  20.0000n
+
+          ***** job concluded
+
+   *** monte carlo  index =                      74 ***
+
+ tpd_max_cout= 501.6398p  targ=   2.7092n   trig=   2.2075n
+ tpd_max_s8=-710.7138p  targ=   1.4968n   trig=   2.2075n
+ power_avg= -86.1230u  from=   0.             to=  20.0000n
+
+          ***** job concluded
+
+   *** monte carlo  index =                      75 ***
+
+ tpd_max_cout= 540.0462p  targ=   2.7472n   trig=   2.2071n
+ tpd_max_s8=-681.1833p  targ=   1.5259n   trig=   2.2071n
+ power_avg= -75.0660u  from=   0.             to=  20.0000n
+
+          ***** job concluded
+
+   *** monte carlo  index =                      76 ***
+
+ tpd_max_cout= 449.6346p  targ=   2.6579n   trig=   2.2083n
+ tpd_max_s8=-750.8812p  targ=   1.4574n   trig=   2.2083n
+ power_avg=-107.3415u  from=   0.             to=  20.0000n
+
+          ***** job concluded
+
+   *** monte carlo  index =                      77 ***
+
+ tpd_max_cout= 614.2049p  targ=   2.8207n   trig=   2.2065n
+ tpd_max_s8=-624.1316p  targ=   1.5824n   trig=   2.2065n
+ power_avg= -59.9835u  from=   0.             to=  20.0000n
+
+          ***** job concluded
+
+   *** monte carlo  index =                      78 ***
+
+ tpd_max_cout= 537.4018p  targ=   2.7445n   trig=   2.2071n
+ tpd_max_s8=-683.4052p  targ=   1.5237n   trig=   2.2071n
+ power_avg= -75.7242u  from=   0.             to=  20.0000n
+
+          ***** job concluded
+
+   *** monte carlo  index =                      79 ***
+
+ tpd_max_cout= 501.3408p  targ=   2.7089n   trig=   2.2075n
+ tpd_max_s8=-710.9585p  targ=   1.4966n   trig=   2.2075n
+ power_avg= -86.2549u  from=   0.             to=  20.0000n
+
+          ***** job concluded
+
+   *** monte carlo  index =                      80 ***
+
+ tpd_max_cout= 446.6719p  targ=   2.6550n   trig=   2.2083n
+ tpd_max_s8=-753.1790p  targ=   1.4551n   trig=   2.2083n
+ power_avg=-108.8417u  from=   0.             to=  20.0000n
+
+          ***** job concluded
+
+   *** monte carlo  index =                      81 ***
+
+ tpd_max_cout= 473.1781p  targ=   2.6811n   trig=   2.2079n
+ tpd_max_s8=-732.7350p  targ=   1.4752n   trig=   2.2079n
+ power_avg= -96.6023u  from=   0.             to=  20.0000n
+
+          ***** job concluded
+
+   *** monte carlo  index =                      82 ***
+
+ tpd_max_cout= 455.5878p  targ=   2.6638n   trig=   2.2082n
+ tpd_max_s8=-746.0732p  targ=   1.4621n   trig=   2.2082n
+ power_avg=-104.2909u  from=   0.             to=  20.0000n
+
+          ***** job concluded
+
+   *** monte carlo  index =                      83 ***
+
+ tpd_max_cout= 468.8036p  targ=   2.6768n   trig=   2.2080n
+ tpd_max_s8=-735.9772p  targ=   1.4720n   trig=   2.2080n
+ power_avg= -98.3200u  from=   0.             to=  20.0000n
+
+          ***** job concluded
+
+   *** monte carlo  index =                      84 ***
+
+ tpd_max_cout= 544.8530p  targ=   2.7519n   trig=   2.2071n
+ tpd_max_s8=-677.5370p  targ=   1.5295n   trig=   2.2071n
+ power_avg= -73.8809u  from=   0.             to=  20.0000n
+
+          ***** job concluded
+
+   *** monte carlo  index =                      85 ***
+
+ tpd_max_cout= 477.8733p  targ=   2.6857n   trig=   2.2078n
+ tpd_max_s8=-729.1152p  targ=   1.4787n   trig=   2.2078n
+ power_avg= -94.7223u  from=   0.             to=  20.0000n
+
+          ***** job concluded
+
+   *** monte carlo  index =                      86 ***
+
+ tpd_max_cout= 515.0257p  targ=   2.7224n   trig=   2.2074n
+ tpd_max_s8=-700.6125p  targ=   1.5068n   trig=   2.2074n
+ power_avg= -81.9881u  from=   0.             to=  20.0000n
+
+          ***** job concluded
+
+   *** monte carlo  index =                      87 ***
+
+ tpd_max_cout= 476.7501p  targ=   2.6846n   trig=   2.2079n
+ tpd_max_s8=-729.9618p  targ=   1.4779n   trig=   2.2079n
+ power_avg= -95.1246u  from=   0.             to=  20.0000n
+
+          ***** job concluded
+
+   *** monte carlo  index =                      88 ***
+
+ tpd_max_cout= 486.8354p  targ=   2.6946n   trig=   2.2077n
+ tpd_max_s8=-722.2544p  targ=   1.4855n   trig=   2.2077n
+ power_avg= -91.3062u  from=   0.             to=  20.0000n
+
+          ***** job concluded
+
+   *** monte carlo  index =                      89 ***
+
+ tpd_max_cout= 463.3721p  targ=   2.6714n   trig=   2.2081n
+ tpd_max_s8=-740.2228p  targ=   1.4678n   trig=   2.2081n
+ power_avg=-100.7349u  from=   0.             to=  20.0000n
+
+          ***** job concluded
+
+   *** monte carlo  index =                      90 ***
+
+ tpd_max_cout= 534.3684p  targ=   2.7415n   trig=   2.2072n
+ tpd_max_s8=-685.8427p  targ=   1.5213n   trig=   2.2072n
+ power_avg= -76.5561u  from=   0.             to=  20.0000n
+
+          ***** job concluded
+
+   *** monte carlo  index =                      91 ***
+
+ tpd_max_cout= 423.9727p  targ=   2.6327n   trig=   2.2087n
+ tpd_max_s8=-770.3150p  targ=   1.4384n   trig=   2.2087n
+ power_avg=-121.6075u  from=   0.             to=  20.0000n
+
+          ***** job concluded
+
+   *** monte carlo  index =                      92 ***
+
+ tpd_max_cout= 542.6793p  targ=   2.7498n   trig=   2.2071n
+ tpd_max_s8=-679.2814p  targ=   1.5278n   trig=   2.2071n
+ power_avg= -74.4457u  from=   0.             to=  20.0000n
+
+          ***** job concluded
+
+   *** monte carlo  index =                      93 ***
+
+ tpd_max_cout= 427.6237p  targ=   2.6363n   trig=   2.2087n
+ tpd_max_s8=-767.5666p  targ=   1.4411n   trig=   2.2087n
+ power_avg=-119.3028u  from=   0.             to=  20.0000n
+
+          ***** job concluded
+
+   *** monte carlo  index =                      94 ***
+
+ tpd_max_cout= 486.5956p  targ=   2.6943n   trig=   2.2077n
+ tpd_max_s8=-722.4363p  targ=   1.4853n   trig=   2.2077n
+ power_avg= -91.4106u  from=   0.             to=  20.0000n
+
+          ***** job concluded
+
+   *** monte carlo  index =                      95 ***
+
+ tpd_max_cout= 524.7674p  targ=   2.7320n   trig=   2.2073n
+ tpd_max_s8=-693.0997p  targ=   1.5142n   trig=   2.2073n
+ power_avg= -79.1332u  from=   0.             to=  20.0000n
+
+          ***** job concluded
+
+   *** monte carlo  index =                      96 ***
+
+ tpd_max_cout= 449.6401p  targ=   2.6579n   trig=   2.2083n
+ tpd_max_s8=-750.8775p  targ=   1.4574n   trig=   2.2083n
+ power_avg=-107.3410u  from=   0.             to=  20.0000n
+
+          ***** job concluded
+
+   *** monte carlo  index =                      97 ***
+
+ tpd_max_cout= 514.9770p  targ=   2.7224n   trig=   2.2074n
+ tpd_max_s8=-700.6796p  targ=   1.5067n   trig=   2.2074n
+ power_avg= -82.0162u  from=   0.             to=  20.0000n
+
+          ***** job concluded
+
+   *** monte carlo  index =                      98 ***
+
+ tpd_max_cout= 445.0860p  targ=   2.6534n   trig=   2.2083n
+ tpd_max_s8=-754.2245p  targ=   1.4541n   trig=   2.2083n
+ power_avg=-109.4740u  from=   0.             to=  20.0000n
+
+          ***** job concluded
+
+   *** monte carlo  index =                      99 ***
+
+ tpd_max_cout= 541.5323p  targ=   2.7486n   trig=   2.2071n
+ tpd_max_s8=-680.0235p  targ=   1.5271n   trig=   2.2071n
+ power_avg= -74.7011u  from=   0.             to=  20.0000n
+
+          ***** job concluded
+
+   *** monte carlo  index =                     100 ***
+
+ tpd_max_cout= 545.0125p  targ=   2.7521n   trig=   2.2071n
+ tpd_max_s8=-677.4192p  targ=   1.5296n   trig=   2.2071n
+ power_avg= -73.8553u  from=   0.             to=  20.0000n
+
+   meas_variable = tpd_max_cout
+   mean  = 505.7112p  varian = 4.109e-21
+   sigma =  64.0990p  avgdev =  52.1572p
+   max   = 748.4858p  min    = 383.7785p
+    1-sigma =  64.0990p median = 486.5956p
+
+   meas_variable = tpd_max_s8
+   mean  =-707.6273p  varian = 2.439e-21
+   sigma =  49.3854p  avgdev =  40.0949p
+   max   =-518.1007p  min    =-801.3282p
+    1-sigma =  49.3854p median =-722.4363p
+
+   meas_variable = power_avg
+   mean  = -89.2503u  varian = 412.4771p
+   sigma =  20.3095u  avgdev =  16.9372u
+   max   = -42.7837u  min    =-153.8114u
+    1-sigma =  20.3095u median = -91.4106u
+
+          ***** job concluded
+ ******  
+ * 8-bit kogge-stone adder design
+
+ ****** job statistics summary tnom=  25.000 temp=  25.000 ******
+
+  ******  HSPICE Threads Information  ******
+
+  Command Line Threads Count :     1
+  Available CPU Count        :     8
+  Actual Threads Count       :     1
+
+
+  ****** Statistics of Ignored Elements ******
+  Voltage Sources :       1
+
+  ******  Circuit Statistics  ******
+  # nodes       =     317 # elements   =     591
+  # resistors   =       0 # capacitors =       0 # inductors   =       0
+  # mutual_inds =       0 # vccs       =       0 # vcvs        =       0
+  # cccs        =       0 # ccvs       =       0 # volt_srcs   =       1
+  # curr_srcs   =       0 # diodes     =       0 # bjts        =       0
+  # jfets       =       0 # mosfets    =     564 # U elements  =       0
+  # T elements  =       0 # W elements =       0 # B elements  =       0
+  # S elements  =       0 # P elements =       0 # va device   =       0
+  # vector_srcs =      26 # N elements =       0
+
+
+  ******  Runtime Statistics (seconds)  ******
+
+  analysis           time    # points   tot. iter  conv.iter
+  op point           1.49           1        1379
+  transient        252.87     2000100      490479      166705 rev=      1681
+  readin             0.19
+  errchk             0.03
+  setup              0.00
+  output             0.00
+
+
+           peak memory used         75.35 megabytes
+           total cpu time          254.71 seconds
+           total elapsed time      255.72 seconds
+           job started at     16:41:33 06/04/2025
+           job ended   at     16:45:48 06/04/2025
+           job total runtime       255.72 seconds
+
+
+  lic: Release hspice token(s) 
+ lic: total license checkout elapse time:        1.00(s)

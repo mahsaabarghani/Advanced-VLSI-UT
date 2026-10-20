@@ -1,0 +1,1063 @@
+ ****** HSPICE -- P-2019.06-SP1-1 win64 (Sep 27 2019) ******                    
+  Copyright (c) 1986 - 2025 by Synopsys, Inc. All Rights Reserved.              
+  This software and the associated documentation are proprietary
+  to Synopsys, Inc. This software may only be used in accordance
+  with the terms and conditions of a written license agreement with
+  Synopsys, Inc. All other use, reproduction, or distribution of
+  this software is strictly prohibited.
+  Input File: CRA.sp                                                            
+  Command line options: C:\synopsys\Hspice_P-2019.06-SP1-1\WIN64\hspice.com -i CRA.sp -o G:\trm2\vlsi\CA3\CRA.lis
+  Start time: Tue Jun  3 17:26:44 2025
+  lic:  
+  lic: FLEXlm: SDK_12.3 
+  lic: USER:   Lenovo               HOSTNAME: mahsa 
+  lic: HOSTID: "000000000000"       PID:      16756 
+  lic: Using FLEXlm license file: 
+  lic: 27000@mahsa 
+  lic: Checkout 1 hspice 
+  lic: License/Maintenance for hspice will expire on 30-dec-2030/2020.12 
+  lic: 1(in_use)/99(total) FLOATING license(s) on SERVER 27000@mahsa 
+  lic:   
+1****** HSPICE -- P-2019.06-SP1-1 win64 (Sep 27 2019) ******                    
+ ******  
+ ********** 8-bit ripple-carry adder - main file ***************
+
+ ****** circuit name directory
+ circuit number to circuit name directory
+   number circuitname                     definition         multiplier
+        0 main circuit
+        1 xrca8.                          rca8               1.00 
+        2 xrca8.xfa1.                     fa                 1.00 
+        3 xrca8.xfa2.                     fa                 1.00 
+        4 xrca8.xfa3.                     fa                 1.00 
+        5 xrca8.xfa4.                     fa                 1.00 
+        6 xrca8.xfa5.                     fa                 1.00 
+        7 xrca8.xfa6.                     fa                 1.00 
+        8 xrca8.xfa7.                     fa                 1.00 
+        9 xrca8.xfa8.                     fa                 1.00 
+       10 xrca8.xfa1.x1.                  xor2               1.00 
+       11 xrca8.xfa1.x2.                  xor2               1.00 
+       12 xrca8.xfa1.x3.                  and2               1.00 
+       13 xrca8.xfa1.x4.                  and2               1.00 
+       14 xrca8.xfa1.x5.                  or2                1.00 
+       15 xrca8.xfa2.x1.                  xor2               1.00 
+       16 xrca8.xfa2.x2.                  xor2               1.00 
+       17 xrca8.xfa2.x3.                  and2               1.00 
+       18 xrca8.xfa2.x4.                  and2               1.00 
+       19 xrca8.xfa2.x5.                  or2                1.00 
+       20 xrca8.xfa3.x1.                  xor2               1.00 
+       21 xrca8.xfa3.x2.                  xor2               1.00 
+       22 xrca8.xfa3.x3.                  and2               1.00 
+       23 xrca8.xfa3.x4.                  and2               1.00 
+       24 xrca8.xfa3.x5.                  or2                1.00 
+       25 xrca8.xfa4.x1.                  xor2               1.00 
+       26 xrca8.xfa4.x2.                  xor2               1.00 
+       27 xrca8.xfa4.x3.                  and2               1.00 
+       28 xrca8.xfa4.x4.                  and2               1.00 
+       29 xrca8.xfa4.x5.                  or2                1.00 
+       30 xrca8.xfa5.x1.                  xor2               1.00 
+       31 xrca8.xfa5.x2.                  xor2               1.00 
+       32 xrca8.xfa5.x3.                  and2               1.00 
+       33 xrca8.xfa5.x4.                  and2               1.00 
+       34 xrca8.xfa5.x5.                  or2                1.00 
+       35 xrca8.xfa6.x1.                  xor2               1.00 
+       36 xrca8.xfa6.x2.                  xor2               1.00 
+       37 xrca8.xfa6.x3.                  and2               1.00 
+       38 xrca8.xfa6.x4.                  and2               1.00 
+       39 xrca8.xfa6.x5.                  or2                1.00 
+       40 xrca8.xfa7.x1.                  xor2               1.00 
+       41 xrca8.xfa7.x2.                  xor2               1.00 
+       42 xrca8.xfa7.x3.                  and2               1.00 
+       43 xrca8.xfa7.x4.                  and2               1.00 
+       44 xrca8.xfa7.x5.                  or2                1.00 
+       45 xrca8.xfa8.x1.                  xor2               1.00 
+       46 xrca8.xfa8.x2.                  xor2               1.00 
+       47 xrca8.xfa8.x3.                  and2               1.00 
+       48 xrca8.xfa8.x4.                  and2               1.00 
+       49 xrca8.xfa8.x5.                  or2                1.00 
+       50 xrca8.xfa1.x1.xinv1.            inv                1.00 
+       51 xrca8.xfa1.x1.xinv2.            inv                1.00 
+       52 xrca8.xfa1.x2.xinv1.            inv                1.00 
+       53 xrca8.xfa1.x2.xinv2.            inv                1.00 
+       54 xrca8.xfa1.x3.x1.               nand2              1.00 
+       55 xrca8.xfa1.x3.x2.               inv                1.00 
+       56 xrca8.xfa1.x4.x1.               nand2              1.00 
+       57 xrca8.xfa1.x4.x2.               inv                1.00 
+       58 xrca8.xfa1.x5.x1.               nor2               1.00 
+       59 xrca8.xfa1.x5.x2.               inv                1.00 
+       60 xrca8.xfa2.x1.xinv1.            inv                1.00 
+       61 xrca8.xfa2.x1.xinv2.            inv                1.00 
+       62 xrca8.xfa2.x2.xinv1.            inv                1.00 
+       63 xrca8.xfa2.x2.xinv2.            inv                1.00 
+       64 xrca8.xfa2.x3.x1.               nand2              1.00 
+       65 xrca8.xfa2.x3.x2.               inv                1.00 
+       66 xrca8.xfa2.x4.x1.               nand2              1.00 
+       67 xrca8.xfa2.x4.x2.               inv                1.00 
+       68 xrca8.xfa2.x5.x1.               nor2               1.00 
+       69 xrca8.xfa2.x5.x2.               inv                1.00 
+       70 xrca8.xfa3.x1.xinv1.            inv                1.00 
+       71 xrca8.xfa3.x1.xinv2.            inv                1.00 
+       72 xrca8.xfa3.x2.xinv1.            inv                1.00 
+       73 xrca8.xfa3.x2.xinv2.            inv                1.00 
+       74 xrca8.xfa3.x3.x1.               nand2              1.00 
+       75 xrca8.xfa3.x3.x2.               inv                1.00 
+       76 xrca8.xfa3.x4.x1.               nand2              1.00 
+       77 xrca8.xfa3.x4.x2.               inv                1.00 
+       78 xrca8.xfa3.x5.x1.               nor2               1.00 
+       79 xrca8.xfa3.x5.x2.               inv                1.00 
+       80 xrca8.xfa4.x1.xinv1.            inv                1.00 
+       81 xrca8.xfa4.x1.xinv2.            inv                1.00 
+       82 xrca8.xfa4.x2.xinv1.            inv                1.00 
+       83 xrca8.xfa4.x2.xinv2.            inv                1.00 
+       84 xrca8.xfa4.x3.x1.               nand2              1.00 
+       85 xrca8.xfa4.x3.x2.               inv                1.00 
+       86 xrca8.xfa4.x4.x1.               nand2              1.00 
+       87 xrca8.xfa4.x4.x2.               inv                1.00 
+       88 xrca8.xfa4.x5.x1.               nor2               1.00 
+       89 xrca8.xfa4.x5.x2.               inv                1.00 
+       90 xrca8.xfa5.x1.xinv1.            inv                1.00 
+       91 xrca8.xfa5.x1.xinv2.            inv                1.00 
+       92 xrca8.xfa5.x2.xinv1.            inv                1.00 
+       93 xrca8.xfa5.x2.xinv2.            inv                1.00 
+       94 xrca8.xfa5.x3.x1.               nand2              1.00 
+       95 xrca8.xfa5.x3.x2.               inv                1.00 
+       96 xrca8.xfa5.x4.x1.               nand2              1.00 
+       97 xrca8.xfa5.x4.x2.               inv                1.00 
+       98 xrca8.xfa5.x5.x1.               nor2               1.00 
+       99 xrca8.xfa5.x5.x2.               inv                1.00 
+      100 xrca8.xfa6.x1.xinv1.            inv                1.00 
+      101 xrca8.xfa6.x1.xinv2.            inv                1.00 
+      102 xrca8.xfa6.x2.xinv1.            inv                1.00 
+      103 xrca8.xfa6.x2.xinv2.            inv                1.00 
+      104 xrca8.xfa6.x3.x1.               nand2              1.00 
+      105 xrca8.xfa6.x3.x2.               inv                1.00 
+      106 xrca8.xfa6.x4.x1.               nand2              1.00 
+      107 xrca8.xfa6.x4.x2.               inv                1.00 
+      108 xrca8.xfa6.x5.x1.               nor2               1.00 
+      109 xrca8.xfa6.x5.x2.               inv                1.00 
+      110 xrca8.xfa7.x1.xinv1.            inv                1.00 
+      111 xrca8.xfa7.x1.xinv2.            inv                1.00 
+      112 xrca8.xfa7.x2.xinv1.            inv                1.00 
+      113 xrca8.xfa7.x2.xinv2.            inv                1.00 
+      114 xrca8.xfa7.x3.x1.               nand2              1.00 
+      115 xrca8.xfa7.x3.x2.               inv                1.00 
+      116 xrca8.xfa7.x4.x1.               nand2              1.00 
+      117 xrca8.xfa7.x4.x2.               inv                1.00 
+      118 xrca8.xfa7.x5.x1.               nor2               1.00 
+      119 xrca8.xfa7.x5.x2.               inv                1.00 
+      120 xrca8.xfa8.x1.xinv1.            inv                1.00 
+      121 xrca8.xfa8.x1.xinv2.            inv                1.00 
+      122 xrca8.xfa8.x2.xinv1.            inv                1.00 
+      123 xrca8.xfa8.x2.xinv2.            inv                1.00 
+      124 xrca8.xfa8.x3.x1.               nand2              1.00 
+      125 xrca8.xfa8.x3.x2.               inv                1.00 
+      126 xrca8.xfa8.x4.x1.               nand2              1.00 
+      127 xrca8.xfa8.x4.x2.               inv                1.00 
+      128 xrca8.xfa8.x5.x1.               nor2               1.00 
+      129 xrca8.xfa8.x5.x2.               inv                1.00 
+ Model file: crn90g_2d5_lk_v1d2p1.l
+ Model line:        12331
+ Model Name: pch.20  
+ BSIM4 Model (Level 54)
+    MOBMOD = 0
+    BINUNIT = 2
+    PARAMCHK = 1
+    CAPMOD = 2
+    DIOMOD = 1
+    RDSMOD = 0
+    TRNQSMOD = 0
+    ACNQSMOD = 0
+    RBODYMOD = 0
+    RGATEMOD = 0
+    PERMOD = 1
+    GEOMOD = 0
+    RGEOMOD = 0
+    FNOIMOD = 1
+    TNOIMOD = 0
+    IGCMOD = 1
+    IGBMOD = 1
+    STIMOD = 1
+    VBFWDMOD = 0
+    VERSION =    4.4 
+    TOXREF =  3e-09 
+    TOXE = 2.5e-09 
+    TOXP = 1.975e-09 
+    TOXM = 2.5e-09 
+    DTOX = 5.25e-10 
+    EPSROX =    3.9 
+    CDSC =      0 
+    CDSCB =      0 
+    CDSCD =      0 
+    CIT = -0.0002857 
+    NFACTOR = -1.191 
+    XJ = 1.7e-07 
+    VSAT = 1.2e+05 
+    A0 =   3.62 
+    AGS =  5.742 
+    A1 =      0 
+    A2 =      1 
+    AT = 2.83e+05 
+    KETA = -0.2576 
+    NSUB =  6e+16 
+    NDEP = 1.72e+17 
+    NSD =  1e+20 
+    NGATE =  8e+19 
+    GAMMA1 =      0 
+    GAMMA2 =      0 
+    VBX =      0 
+    VBM =     -3 
+    XT = 1.55e-07 
+    K1 = 0.1623 
+    KT1 = -0.2258 
+    KT1L =      0 
+    KT2 = -0.03875 
+    K2 = 0.03015 
+    K3 =  -0.58 
+    K3B =    0.8 
+    LPE0 = 2.805e-07 
+    LPEB =  1e-07 
+    DVTP0 =      0 
+    DVTP1 =      0 
+    W0 =      0 
+    DVT0 =     10 
+    DVT1 =   1.71 
+    DVT2 = 0.0928 
+    DVT0W =      0 
+    DVT1W =      0 
+    DVT2W =      0 
+    DROUT =      0 
+    DSUB =    0.5 
+    VTH0 = -0.1873 
+    EU =      1 
+    UA = -4.197e-10 
+    UA1 = 6.229e-10 
+    UB = 2.527e-18 
+    UB1 = -3.63e-18 
+    UC = 1.202e-10 
+    UC1 = -6.421e-11 
+    U0 = 0.008267 
+    UTE = -1.609 
+    VOFF = -0.1416 
+    VOFFL =      0 
+    MINV =      0 
+    FPROUT =   1000 
+    PDITS =      0 
+    PDITSD =      0 
+    PDITSL =      0 
+    DELTA =   0.02 
+    RDSW =    210 
+    RDSWMIN =      0 
+    RDWMIN =      0 
+    RSWMIN =      0 
+    RDW =    100 
+    RSW =    100 
+    PRWG =      0 
+    PRWB =      0 
+    PRT =      0 
+    ETA0 = 0.06098 
+    ETAB = -0.01537 
+    PCLM = 0.6429 
+    PDIBLC1 =      0 
+    PDIBLC2 =  0.005 
+    PDIBLCB =      0 
+    PSCBE1 = 9.264e+08 
+    PSCBE2 =  1e-20 
+    PVAG =      0 
+    WR =      1 
+    DWG =      0 
+    DWB =      0 
+    XW =  1e-08 
+    XWREF =  1e-08 
+    XL = -3.5e-08 
+    XLREF = -3.5e-08 
+    B0 =      0 
+    B1 =      0 
+    ALPHA0 =      0 
+    ALPHA1 =   0.06 
+    AGIDL =  9e-08 
+    BGIDL = 2.3e+09 
+    CGIDL =    0.5 
+    PHIN =      0 
+    EGIDL =   0.53 
+    AIGC = 0.00606 
+    BIGC = 0.0007625 
+    CIGC =  1e-10 
+    AIGSD = 0.004566 
+    BIGSD =      0 
+    CIGSD = 0.002267 
+    AIGBACC = 0.01069 
+    BIGBACC = 0.003132 
+    CIGBACC = 0.1498 
+    AIGBINV =   0.35 
+    BIGBINV =   0.03 
+    CIGBINV =  0.006 
+    NIGC =      1 
+    NIGBINV =      1 
+    NIGBACC =  4.049 
+    NTOX =      1 
+    EIGBINV =    1.1 
+    PIGCD =    2.3 
+    POXEDGE =      1 
+    XRCRG1 =     12 
+    TNOIA =    1.5 
+    TNOIB =    3.5 
+    NTNOI =      1 
+    XRCRG2 =      1 
+    BETA0 =     12 
+    IJTHDFWD =   0.01 
+    IJTHSFWD =   0.01 
+    IJTHDREV =   0.01 
+    IJTHSREV =   0.01 
+    XJBVD =      1 
+    XJBVS =      1 
+    BVD =     10 
+    BVS =     10 
+    VFB =     -1 
+    GBMIN =  1e-12 
+    RBDB =     50 
+    RBPB =     50 
+    RBSB =     50 
+    RBPS =     50 
+    RBPD =     50 
+    CGSL = 1.896e-10 
+    CGDL = 1.896e-10 
+    CKAPPAS =    0.6 
+    CKAPPAD =    0.6 
+    CF = 1.38e-10 
+    CLC =  1e-07 
+    CLE =    0.6 
+    DWC =      0 
+    DLC = 1.525e-08 
+    DLCIG = 2.5e-09 
+    DWJ =      0 
+    VFBCV =     -1 
+    ACDE =    1.2 
+    MOIN =  11.09 
+    NOFF =  2.175 
+    VOFFCV = -0.03885 
+    DMCG = 9.25e-08 
+    DMCI = 9.25e-08 
+    DMDG =      0 
+    DMCGT =      0 
+    XGW =      0 
+    XGL =      0 
+    RSHG =    0.1 
+    NGCON =      1 
+    TCJ = 0.000854 
+    TPB = 0.0019 
+    TCJSW = 0.000357 
+    TPBSW = 0.0019 
+    TCJSWG = 0.00312 
+    TPBSWG = 0.0019 
+    SK0 =      0 
+    SK1 =      0 
+    SK2 =      0 
+    SL =  2e-06 
+    SW =  2e-06 
+    K =      0 
+    LCIT = 2.571e-10 
+    LNFACTOR = 2.064e-07 
+    LAT = -0.01381 
+    LAGS = 2.728e-07 
+    LKETA = 1.744e-08 
+    LKT1 = -8.17e-09 
+    LK2 = 8.66e-10 
+    LVTH0 = 4.038e-09 
+    LUA = -4.216e-17 
+    LUA1 = 1.188e-17 
+    LUB = -2.588e-26 
+    LUB1 = 1.305e-25 
+    LUC = 1.469e-18 
+    LU0 = -2.255e-10 
+    LUTE = 2.963e-08 
+    LVOFF = 2.359e-09 
+    LETA0 = 1.69e-09 
+    LETAB = -9.257e-10 
+    LPCLM = -2.657e-08 
+    WNFACTOR = 6.594e-07 
+    WAT = -0.002993 
+    WAGS = -1.02e-06 
+    WKETA = 3.365e-09 
+    WKT1 = -9.137e-09 
+    WK2 = -2.583e-10 
+    WVTH0 = 4.079e-09 
+    WUA = -2.311e-17 
+    WUA1 = 3.088e-16 
+    WUB = -1.152e-25 
+    WUB1 = -1.7e-26 
+    WUC = -1.624e-17 
+    WU0 = -4.079e-12 
+    WUTE = 1.254e-07 
+    WVOFF = 7.791e-09 
+    WETA0 = -3.739e-09 
+    WAIGSD = 6.71e-11 
+    PNFACTOR = -6.526e-14 
+    PAT = 1.799e-10 
+    PAGS = 2.039e-13 
+    PKETA = -6.73e-16 
+    PKT1 = 1.827e-15 
+    PK2 = -1.387e-16 
+    PVTH0 = -7.016e-16 
+    PUA = 4.307e-24 
+    PUA1 = -2.855e-25 
+    PUB = 8.566e-33 
+    PUB1 = -3.324e-32 
+    PUC = 1.937e-25 
+    PU0 = 9.381e-18 
+    PUTE = -8.035e-15 
+    PVOFF = -1.187e-15 
+    PETA0 = -2.039e-16 
+    TNOM =  298.1 
+    CGSO = 2.568e-11 
+    CGDO = 2.568e-11 
+    CGBO =      0 
+    XPART =      1 
+    RSH =   9.68 
+    JSS = 1.245e-07 
+    JSWS = 3.77e-13 
+    JSWGS =  3e-12 
+    PBS =    0.8 
+    MJS =   0.36 
+    PBSWS =    0.8 
+    MJSWS =   0.01 
+    CJS = 0.00114 
+    CJSWS =  6e-11 
+    NJS =      1 
+    PBSWGS =      1 
+    MJSWGS =   0.99 
+    CJSWGS = 3.6e-10 
+    XTIS =      3 
+    JSD = 1.245e-07 
+    JSWD = 3.77e-13 
+    JSWGD =  3e-12 
+    PBD =    0.8 
+    MJD =   0.36 
+    PBSWD =    0.8 
+    MJSWD =   0.01 
+    CJD = 0.00114 
+    CJSWD =  6e-11 
+    NJD =      1 
+    PBSWGD =      1 
+    MJSWGD =   0.99 
+    CJSWGD = 3.6e-10 
+    XTID =      3 
+    LMLT =      1 
+    WMLT =      1 
+    LINT = 2.5e-09 
+    LL =      0 
+    LLC =      0 
+    LLN =      1 
+    LW =      0 
+    LWC =      0 
+    LWN =      1 
+    LWL =      0 
+    LWLC =      0 
+    LMIN =  1e-07 
+    LMAX = 2.4e-07 
+    WINT =  5e-09 
+    WL =      0 
+    WLC =      0 
+    WLN =      1 
+    WW =      0 
+    WWC =      0 
+    WWN =      1 
+    WWL =      0 
+    WWLC =      0 
+    WMIN = 2.45e-07 
+    WMAX = 5.05e-07 
+    NOIA = 1.635e+42 
+    NOIB = 7.241e+26 
+    NOIC =   8.75 
+    EM = 1.5e+08 
+    EF =   1.19 
+    AF =      1 
+    KF =      0 
+    TRS =      0 
+    TRD =      0 
+    TEMPMOD  =      0 
+    LAMBDA   =      0 
+    VTL      =  2e+05 m/s
+    LC       =  5e-09 
+    XN       =      3 
+    LLAMBDA  =      0 
+    LVTL     =      0 
+    LXN      =      0 
+    WLAMBDA  =      0 
+    WVTL     =      0 
+    WXN      =      0 
+    PLAMBDA  =      0 
+    PVTL     =      0 
+    PXN      =      0 
+    RNOIA    =  0.577 
+    RNOIB    = 0.5164 
+    SAREF(SA0) = 6.3e-07 m
+    SBREF(SB0) = 6.3e-07 m
+    WLOD     =  8e-07 m
+    KU0      = 1.325e-07 1/m
+    KVSAT    =   -0.9 
+    KVTH0    = -1.5e-09 m
+    TKU0     =    0.1 
+    LLODKU0  =      1 
+    WLODKU0  =      1 
+    LLODVTH  =      2 
+    WLODVTH  =      1 
+    LKU0     = 1.33e-07 
+    WKU0     = 6.5e-07 
+    PKU0     =      0 
+    LKVTH0   = -1.68e-15 
+    WKVTH0   =  5e-07 
+    PKVTH0   =      0 
+    STK2     =  4e-10 
+    LODK2    =      2 
+    STETA0   =      0 
+    LODETA0  =      1 
+    LXRCRG1  =      0 
+    WXRCRG1  =      0 
+    PXRCRG1  =      0 
+    LXRCRG2  =      0 
+    WXRCRG2  =      0 
+    PXRCRG2  =      0 
+     *** UCB's BSIM4.4.0 new diode model is activated. ***
+    *** UCB's Diode Model Parameters ***
+    JTSS         =      0 
+    JTSSWS       =      0 
+    JTSSWGS      =      0 
+    JTSD         =      0 
+    JTSSWD       =      0 
+    JTSSWGD      =      0 
+    NJTS         =     20 
+    NJTSSW       =     20 
+    NJTSSWG      =     20 
+    XTSS         =   0.02 
+    XTSSWS       =   0.02 
+    XTSSWGS      =   0.02 
+    XTSD         =   0.02 
+    XTSSWD       =   0.02 
+    XTSSWGD      =   0.02 
+    TNJTS        =      0 
+    TNJTSSW      =      0 
+    TNJTSSWG     =      0 
+    VFBSDOFF     =      0 
+    LVFBSDOFF    =      0 
+    WVFBSDOFF    =      0 
+    PVFBSDOFF    =      0 
+    LINTNOI      =      0 
+    VTSS         =     10 
+    VTSD         =     10 
+    VTSSWS       =     10 
+    VTSSWD       =     10 
+    VTSSWGS      =     10 
+    VTSSWGD      =     10 
+    TTDIOMOD     =      1 
+ Model file: crn90g_2d5_lk_v1d2p1.l
+ Model line:        10422
+ Model Name: nch.20  
+ BSIM4 Model (Level 54)
+    MOBMOD = 0
+    BINUNIT = 2
+    PARAMCHK = 1
+    CAPMOD = 2
+    DIOMOD = 1
+    RDSMOD = 0
+    TRNQSMOD = 0
+    ACNQSMOD = 0
+    RBODYMOD = 0
+    RGATEMOD = 0
+    PERMOD = 1
+    GEOMOD = 0
+    RGEOMOD = 0
+    FNOIMOD = 1
+    TNOIMOD = 0
+    IGCMOD = 1
+    IGBMOD = 1
+    STIMOD = 1
+    VBFWDMOD = 0
+    VERSION =    4.4 
+    TOXREF =  3e-09 
+    TOXE = 2.33e-09 
+    TOXP = 2.03e-09 
+    TOXM = 2.33e-09 
+    DTOX =  3e-10 
+    EPSROX =    3.9 
+    CDSC =      0 
+    CDSCB =      0 
+    CDSCD =      0 
+    CIT = -0.0001229 
+    NFACTOR =    0.5 
+    XJ = 1.5e-07 
+    VSAT = 1.14e+05 
+    A0 =  2.375 
+    AGS =   0.95 
+    A1 =      0 
+    A2 =      1 
+    AT = 3.536e+04 
+    KETA = -0.04414 
+    NSUB =  6e+16 
+    NDEP = 8.369e+17 
+    NSD =  1e+20 
+    NGATE =  4e+20 
+    GAMMA1 =      0 
+    GAMMA2 =      0 
+    VBX =      0 
+    VBM =     -3 
+    XT = 1.55e-07 
+    K1 = 0.3006 
+    KT1 = -0.2624 
+    KT1L =      0 
+    KT2 = -0.04464 
+    K2 = -0.004161 
+    K3 = -2.957 
+    K3B =    1.2 
+    LPE0 = 4.45e-08 
+    LPEB =      0 
+    DVTP0 =  4e-07 
+    DVTP1 =      2 
+    W0 = -5e-08 
+    DVT0 =   13.9 
+    DVT1 =   1.25 
+    DVT2 =      0 
+    DVT0W =      0 
+    DVT1W =      0 
+    DVT2W =      0 
+    DROUT =      0 
+    DSUB =    0.5 
+    VTH0 =  0.228 
+    EU =   1.67 
+    UA = -6.284e-10 
+    UA1 = 2.684e-09 
+    UB = 9.297e-19 
+    UB1 = -3.673e-18 
+    UC = 5.898e-11 
+    UC1 = -1.646e-10 
+    U0 = 0.02965 
+    UTE = -1.329 
+    VOFF = -0.1638 
+    VOFFL =      0 
+    MINV =      0 
+    FPROUT =    200 
+    PDITS =      0 
+    PDITSD =      0 
+    PDITSL =      0 
+    DELTA = 0.0075 
+    RDSW =    140 
+    RDSWMIN =      0 
+    RDWMIN =      0 
+    RSWMIN =      0 
+    RDW =    100 
+    RSW =    100 
+    PRWG =      0 
+    PRWB =      0 
+    PRT =      0 
+    ETA0 = 0.2198 
+    ETAB =   -0.1 
+    PCLM = 0.8795 
+    PDIBLC1 =      0 
+    PDIBLC2 = 0.0001 
+    PDIBLCB =      0 
+    PSCBE1 = 9.264e+08 
+    PSCBE2 =  1e-20 
+    PVAG =    1.5 
+    WR =      1 
+    DWG =      0 
+    DWB =      0 
+    XW =  1e-08 
+    XWREF =  1e-08 
+    XL = -3.5e-08 
+    XLREF = -3.5e-08 
+    B0 =      0 
+    B1 =      0 
+    ALPHA0 =      0 
+    ALPHA1 =   0.03 
+    AGIDL =  9e-08 
+    BGIDL = 2.3e+09 
+    CGIDL =    0.5 
+    PHIN =      0 
+    EGIDL =   0.53 
+    AIGC = 0.0103 
+    BIGC = 0.001525 
+    CIGC =      0 
+    AIGSD = 0.00845 
+    BIGSD = 0.0004021 
+    CIGSD = 0.001463 
+    AIGBACC = 0.01134 
+    BIGBACC = 0.003249 
+    CIGBACC = 0.1416 
+    AIGBINV =   0.35 
+    BIGBINV =   0.03 
+    CIGBINV =  0.006 
+    NIGC =      1 
+    NIGBINV =      1 
+    NIGBACC =   4.05 
+    NTOX =      1 
+    EIGBINV =    1.1 
+    PIGCD =    2.3 
+    POXEDGE =      1 
+    XRCRG1 =     12 
+    TNOIA =    1.5 
+    TNOIB =    3.5 
+    NTNOI =      1 
+    XRCRG2 =      1 
+    BETA0 =    8.7 
+    IJTHDFWD =   0.01 
+    IJTHSFWD =   0.01 
+    IJTHDREV =   0.01 
+    IJTHSREV =   0.01 
+    XJBVD =      1 
+    XJBVS =      1 
+    BVD =     10 
+    BVS =     10 
+    VFB =     -1 
+    GBMIN =  1e-12 
+    RBDB =     50 
+    RBPB =     50 
+    RBSB =     50 
+    RBPS =     50 
+    RBPD =     50 
+    CGSL = 6.514e-11 
+    CGDL = 6.514e-11 
+    CKAPPAS =    0.6 
+    CKAPPAD =    0.6 
+    CF = 1.38e-10 
+    CLC =  1e-07 
+    CLE =    0.6 
+    DWC =      0 
+    DLC = 1.172e-08 
+    DLCIG = 2.5e-09 
+    DWJ =      0 
+    VFBCV =     -1 
+    ACDE =    1.2 
+    MOIN =   12.6 
+    NOFF =  1.686 
+    VOFFCV = -0.05472 
+    DMCG = 9.25e-08 
+    DMCI = 9.25e-08 
+    DMDG =      0 
+    DMCGT =      0 
+    XGW =      0 
+    XGL =      0 
+    RSHG =    0.1 
+    NGCON =      1 
+    TCJ = 0.000732 
+    TPB =  0.001 
+    TCJSW = 0.000357 
+    TPBSW = 0.0019 
+    TCJSWG = 0.000357 
+    TPBSWG = 0.0019 
+    SK0 =      0 
+    SK1 =      0 
+    SK2 =      0 
+    SL =  2e-06 
+    SW =  2e-06 
+    K =      0 
+    LCIT = 2.246e-10 
+    LAT = 0.001929 
+    LKETA = 3.429e-09 
+    LK1 = 4.495e-09 
+    LKT1 = -1.62e-09 
+    LK2 = -9.879e-10 
+    LK3 = 1.543e-08 
+    LUB = 2.186e-26 
+    LUC = -5.944e-19 
+    LUC1 = 6.025e-18 
+    LUTE = 6.032e-09 
+    LVOFF = -9.004e-10 
+    LPCLM = -7.907e-09 
+    WK1 = 2.765e-09 
+    WK2 = -1.245e-09 
+    WUB = 3.583e-26 
+    WUC = 3.74e-18 
+    WU0 = -4.483e-10 
+    WUTE = 7.045e-09 
+    WVOFF = 6.561e-09 
+    WETA0 = -1.818e-08 
+    WPCLM = -9.607e-09 
+    PK1 = -5.529e-16 
+    PK2 = 4.483e-16 
+    PUB = 8.54e-34 
+    PUC = 3.883e-25 
+    PUTE = 5.337e-16 
+    PVOFF = -1.665e-16 
+    PPCLM = 1.921e-15 
+    TNOM =  298.1 
+    CGSO = 1.209e-10 
+    CGDO = 1.209e-10 
+    CGBO =      0 
+    XPART =      1 
+    RSH =   10.5 
+    JSS = 1.77e-07 
+    JSWS = 4.23e-13 
+    JSWGS =  9e-12 
+    PBS =    0.5 
+    MJS =   0.25 
+    PBSWS =    0.8 
+    MJSWS =   0.01 
+    CJS = 0.00098 
+    CJSWS =  4e-11 
+    NJS =      1 
+    PBSWGS =   0.78 
+    MJSWGS =   0.52 
+    CJSWGS = 3.7e-10 
+    XTIS =      3 
+    JSD = 1.77e-07 
+    JSWD = 4.23e-13 
+    JSWGD =  9e-12 
+    PBD =    0.5 
+    MJD =   0.25 
+    PBSWD =    0.8 
+    MJSWD =   0.01 
+    CJD = 0.00098 
+    CJSWD =  4e-11 
+    NJD =      1 
+    PBSWGD =   0.78 
+    MJSWGD =   0.52 
+    CJSWGD = 3.7e-10 
+    XTID =      3 
+    LMLT =      1 
+    WMLT =      1 
+    LINT = 2.5e-09 
+    LL =      0 
+    LLC =      0 
+    LLN =      1 
+    LW =      0 
+    LWC =      0 
+    LWN =      1 
+    LWL =      0 
+    LWLC =      0 
+    LMIN =  1e-07 
+    LMAX = 2.4e-07 
+    WINT =  6e-09 
+    WL =      0 
+    WLC =      0 
+    WLN =      1 
+    WW =      0 
+    WWC =      0 
+    WWN =      1 
+    WWL =      0 
+    WWLC =      0 
+    WMIN = 1.2e-07 
+    WMAX = 2.45e-07 
+    NOIA = 4.293e+41 
+    NOIB = 1.612e+24 
+    NOIC =   8.75 
+    EM = 1.192e+07 
+    EF = 0.8841 
+    AF =      1 
+    KF =      0 
+    TRS =      0 
+    TRD =      0 
+    TEMPMOD  =      0 
+    LAMBDA   =      0 
+    VTL      =  2e+05 m/s
+    LC       =  5e-09 
+    XN       =      3 
+    LLAMBDA  =      0 
+    LVTL     =      0 
+    LXN      =      0 
+    WLAMBDA  =      0 
+    WVTL     =      0 
+    WXN      =      0 
+    PLAMBDA  =      0 
+    PVTL     =      0 
+    PXN      =      0 
+    RNOIA    =  0.577 
+    RNOIB    = 0.5164 
+    SAREF(SA0) = 6.3e-07 m
+    SBREF(SB0) = 6.3e-07 m
+    WLOD     =  8e-07 m
+    KU0      = -7.36e-08 1/m
+    KVSAT    =    0.2 
+    KVTH0    = 3.5e-09 m
+    TKU0     =   0.01 
+    LLODKU0  =      1 
+    WLODKU0  =      1 
+    LLODVTH  =      1 
+    WLODVTH  =      1 
+    LKU0     = 4.027e-07 
+    WKU0     =  8e-07 
+    PKU0     = -2e-13 
+    LKVTH0   = -2.68e-11 
+    WKVTH0   = 1.5e-06 
+    PKVTH0   =      0 
+    STK2     = 1.35e-09 
+    LODK2    =    0.5 
+    STETA0   =      0 
+    LODETA0  =      1 
+    LXRCRG1  =      0 
+    WXRCRG1  =      0 
+    PXRCRG1  =      0 
+    LXRCRG2  =      0 
+    WXRCRG2  =      0 
+    PXRCRG2  =      0 
+     *** UCB's BSIM4.4.0 new diode model is activated. ***
+    *** UCB's Diode Model Parameters ***
+    JTSS         =      0 
+    JTSSWS       =      0 
+    JTSSWGS      =      0 
+    JTSD         =      0 
+    JTSSWD       =      0 
+    JTSSWGD      =      0 
+    NJTS         =     20 
+    NJTSSW       =     20 
+    NJTSSWG      =     20 
+    XTSS         =   0.02 
+    XTSSWS       =   0.02 
+    XTSSWGS      =   0.02 
+    XTSD         =   0.02 
+    XTSSWD       =   0.02 
+    XTSSWGD      =   0.02 
+    TNJTS        =      0 
+    TNJTSSW      =      0 
+    TNJTSSWG     =      0 
+    VFBSDOFF     =      0 
+    LVFBSDOFF    =      0 
+    WVFBSDOFF    =      0 
+    PVFBSDOFF    =      0 
+    LINTNOI      =      0 
+    VTSS         =     10 
+    VTSD         =     10 
+    VTSSWS       =     10 
+    VTSSWD       =     10 
+    VTSSWGS      =     10 
+    VTSSWGD      =     10 
+    TTDIOMOD     =      1 
+  
+      
+ **info** set option symb=1 internally to help for convergence.
+ *****************************************************************
+ ******  option summary
+ ******
+ runlvl  = 3         bypass  = 2.0000    
+  Opening plot unit= 79
+ file=G:\trm2\vlsi\CA3\CRA.pa0
+
+ **info** dc convergence successful at Newton-Raphson method 
+ ******  
+ ********** 8-bit ripple-carry adder - main file ***************
+
+ ****** operating point information tnom=  25.000 temp=  25.000 ******
+ ****** operating point status is voltage   simulation time is     0.     
+      node    =voltage        node    =voltage        node    =voltage
+
+ +  0:a1      =   0.        0:a2      =   3.3000    0:a3      =   3.3000 
+ +  0:a4      =   0.        0:a5      =   0.        0:a6      =   3.3000 
+ +  0:a7      =   0.        0:a8      =   0.        0:b1      =   3.3000 
+ +  0:b2      =   0.        0:b3      =   3.3000    0:b4      =   3.3000 
+ +  0:b5      =   3.3000    0:b6      =   3.3000    0:b7      =   3.3000 
+ +  0:b8      =   3.3000    0:cin     =   0.        0:cout    = 999.9899m
+ +  0:s1      = 999.9607m   0:s2      = 999.9607m   0:s3      =   8.6069u
+ +  0:s4      =   8.6093u   0:s5      =   8.6093u   0:s6      = 999.9544m
+ +  0:s7      =   8.6093u   0:s8      =   8.6093u   0:vdd     =   1.0000 
+ +  0:vss     =   0.        1:c2      =   7.2223u   1:c3      =   5.4543u
+ +  1:c4      = 999.9758m   1:c5      = 999.9758m   1:c6      = 999.9766m
+ +  1:c7      = 999.9758m   1:c8      = 999.9758m   2:net1    = 999.9554m
+ +  2:net2    =   3.9067u   2:net3    =   3.9069u   3:net1    =   1.0012 
+ +  3:net2    =   3.8903u   3:net3    =   3.9069u   4:net1    =  10.2768m
+ +  4:net2    = 999.9820m   4:net3    =   3.7418u   5:net1    = 999.9368m
+ +  5:net2    =   2.2030u   5:net3    = 999.9853m   6:net1    = 999.9368m
+ +  6:net2    =   2.2030u   6:net3    = 999.9853m   7:net1    =  10.2771m
+ +  7:net2    = 999.9820m   7:net3    =   3.7421u   8:net1    = 999.9368m
+ +  8:net2    =   2.2030u   8:net3    = 999.9853m   9:net1    = 999.9368m
+ +  9:net2    =   2.2030u   9:net3    = 999.9853m  10:abar    = 999.9899m
+ + 10:bbar    =   2.6265m  10:net1    = 999.9762m  10:net2    =   1.0288 
+ + 10:net3    =   2.5850m  10:net4    = 866.2599m  11:abar    =   3.9077u
+ + 11:bbar    = 999.9856m  11:net1    = 999.9804m  11:net2    = 999.9788m
+ + 11:net3    = 868.3724m  11:net4    =   5.3301u  12:net1    = 999.9879m
+ + 13:net1    = 999.9858m  14:net1    = 999.9501m  15:abar    =   2.6265m
+ + 15:bbar    = 999.9856m  15:net1    =   1.0292   15:net2    =   1.0006 
+ + 15:net3    =   1.0013   15:net4    =   5.6910u  16:abar    =   3.8753u
+ + 16:bbar    = 999.9856m  16:net1    = 999.9801m  16:net2    = 999.9788m
+ + 16:net3    = 869.4084m  16:net4    =   5.3301u  17:net1    =   1.0006 
+ + 18:net1    = 999.9858m  19:net1    = 999.9501m  20:abar    =   2.6264m
+ + 20:bbar    =   2.6253m  20:net1    = 219.4224m  20:net2    =   1.0000 
+ + 20:net3    =   7.6903m  20:net4    =   4.6722m  21:abar    = 999.9821m
+ + 21:bbar    = 999.9852m  21:net1    = 999.9967m  21:net2    = 125.8293m
+ + 21:net3    =   5.1271u  21:net4    =   5.4021u  22:net1    =  10.3204m
+ + 23:net1    = 999.9945m  24:net1    =   3.9066u  25:abar    = 999.9899m
+ + 25:bbar    =   2.6265m  25:net1    = 999.9669m  25:net2    =   1.0288 
+ + 25:net3    =   2.5850m  25:net4    = 866.2590m  26:abar    =   3.7433u
+ + 26:bbar    =   2.2033u  26:net1    = 125.8588m  26:net2    = 999.9967m
+ + 26:net3    =   5.4031u  26:net4    =   4.3041u  27:net1    = 999.9879m
+ + 28:net1    =  12.2154u  29:net1    =   3.8116u  30:abar    = 999.9899m
+ + 30:bbar    =   2.6265m  30:net1    = 999.9669m  30:net2    =   1.0288 
+ + 30:net3    =   2.5850m  30:net4    = 866.2590m  31:abar    =   3.7433u
+ + 31:bbar    =   2.2033u  31:net1    = 125.8588m  31:net2    = 999.9967m
+ + 31:net3    =   5.4031u  31:net4    =   4.3041u  32:net1    = 999.9879m
+ + 33:net1    =  12.2154u  34:net1    =   3.8116u  35:abar    =   2.6264m
+ + 35:bbar    =   2.6253m  35:net1    = 219.4225m  35:net2    =   1.0000 
+ + 35:net3    =   7.6904m  35:net4    =   4.6723m  36:abar    = 999.9867m
+ + 36:bbar    =   3.8564u  36:net1    = 999.9756m  36:net2    = 999.9772m
+ + 36:net3    =   6.9116u  36:net4    = 868.3956m  37:net1    =  10.3204m
+ + 38:net1    = 999.9820m  39:net1    =   3.9066u  40:abar    = 999.9899m
+ + 40:bbar    =   2.6265m  40:net1    = 999.9669m  40:net2    =   1.0288 
+ + 40:net3    =   2.5850m  40:net4    = 866.2590m  41:abar    =   3.7433u
+ + 41:bbar    =   2.2033u  41:net1    = 125.8588m  41:net2    = 999.9967m
+ + 41:net3    =   5.4031u  41:net4    =   4.3041u  42:net1    = 999.9879m
+ + 43:net1    =  12.2154u  44:net1    =   3.8116u  45:abar    = 999.9899m
+ + 45:bbar    =   2.6265m  45:net1    = 999.9669m  45:net2    =   1.0288 
+ + 45:net3    =   2.5850m  45:net4    = 866.2590m  46:abar    =   3.7433u
+ + 46:bbar    =   2.2033u  46:net1    = 125.8588m  46:net2    = 999.9967m
+ + 46:net3    =   5.4031u  46:net4    =   4.3041u  47:net1    = 999.9879m
+ + 48:net1    =  12.2154u  49:net1    =   3.8116u  54:net1    =   2.5850m
+ + 56:net1    = 868.3736m  58:net1    = 999.9736m  64:net1    =   1.0007 
+ + 66:net1    = 869.4096m  68:net1    = 999.9736m  74:net1    =   7.7120m
+ + 76:net1    =  37.5834m  78:net1    = 999.9967m  84:net1    =   2.5850m
+ + 86:net1    =   7.2061u  88:net1    = 125.8241m  94:net1    =   2.5850m
+ + 96:net1    =   7.2061u  98:net1    = 125.8241m 104:net1    =   7.7120m
+ +106:net1    =   6.9117u 108:net1    = 999.9967m 114:net1    =   2.5850m
+ +116:net1    =   7.2061u 118:net1    = 125.8241m 124:net1    =   2.5850m
+ +126:net1    =   7.2061u 128:net1    = 125.8241m
+
+ ******
+ ********** 8-bit ripple-carry adder - main file ***************
+
+ ****** transient analysis tnom=  25.000 temp=  25.000 ******
+ tpd_max_cout=   5.2364n  targ=  15.2440n   trig=  10.0076n
+ tpd_max_s8= 185.7114p  targ=  10.1933n   trig=  10.0076n
+ power_avg= -14.9341u  from=   0.             to=   1.1000u
+
+          ***** job concluded
+ ******  
+ ********** 8-bit ripple-carry adder - main file ***************
+
+ ****** job statistics summary tnom=  25.000 temp=  25.000 ******
+
+  ******  HSPICE Threads Information  ******
+
+  Command Line Threads Count :     1
+  Available CPU Count        :     8
+  Actual Threads Count       :     1
+
+
+  ******  Circuit Statistics  ******
+  # nodes       =     204 # elements   =     364
+  # resistors   =       0 # capacitors =       0 # inductors   =       0
+  # mutual_inds =       0 # vccs       =       0 # vcvs        =       0
+  # cccs        =       0 # ccvs       =       0 # volt_srcs   =       2
+  # curr_srcs   =       0 # diodes     =       0 # bjts        =       0
+  # jfets       =       0 # mosfets    =     336 # U elements  =       0
+  # T elements  =       0 # W elements =       0 # B elements  =       0
+  # S elements  =       0 # P elements =       0 # va device   =       0
+  # vector_srcs =      26 # N elements =       0
+
+
+  ******  Runtime Statistics (seconds)  ******
+
+  analysis           time    # points   tot. iter  conv.iter
+  op point           0.70           1          54
+  transient         17.70     1100001       64454       22120 rev=       176
+  readin             0.17
+  errchk             0.02
+  setup              0.00
+  output             0.00
+
+
+           peak memory used         74.59 megabytes
+           total cpu time           18.29 seconds
+           total elapsed time       19.30 seconds
+           job started at     17:26:44 06/03/2025
+           job ended   at     17:27:03 06/03/2025
+           job total runtime        19.30 seconds
+
+
+  lic: Release hspice token(s) 
+ lic: total license checkout elapse time:        1.01(s)

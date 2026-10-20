@@ -1,0 +1,123 @@
+$DATA1 SOURCE='HSPICE' VERSION='P-2019.06-SP1-1 win64'
+$OPTION MEASFORM=1
+$ This file format is subject to change 
+$ The seperator is :@:                  
+$index=1 is a nominal sample in Monte Carlo.
+$option ignore_global_variation = no              
+$option ignore_local_variation = no               
+$option ignore_interconnect_variation = no        
+$option ignore_spatial_variation = no   
+$option ignore_variation = no 
+$option sampling_method  = srs                  
+$option normal_limit     =      20.0000       
+$option replicates       =   1      
+$option random_generator = MCG                          
+$option seed             =       1  
+$option stream           =   1      
+$option output_sigma_value =  1     
+$option use_agauss_format = yes     
+$option screening_method = pearson  
+$Global Variable number:        1                               
+$Local Variable number:        0                                
+.TITLE '* 8-bit kogge-stone adder design'
+index vdd:@:dev:@:IGNC
+1    0. 
+2   -0.8014 
+3   -0.8294 
+4   -0.2677 
+5    0.2150 
+6    1.6757 
+7    0.8946 
+8    0.2014 
+9    1.0447 
+10   -1.7987 
+11    2.7742 
+12    0.6560 
+13   -1.2719 
+14   -0.4937 
+15    0.4482 
+16    0.3209 
+17    1.4379 
+18   -0.5189 
+19   -0.3780 
+20    0.5518 
+21    0.3415 
+22    0.2900 
+23   -0.1841 
+24    0.8485 
+25   -0.7446 
+26   -1.2438 
+27    0.6697 
+28    0.6131 
+29   -1.1911 
+30    0.3824 
+31    0.9694 
+32   -1.8849 
+33    0.6073 
+34    0.8013 
+35    0.2451 
+36   -1.3209 
+37    0.8362 
+38   -2.4502 
+39   -1.2897 
+40    0.4527 
+41    0.7240 
+42   -0.7223 
+43   -0.2172 
+44   -0.5204 
+45   -1.5757 
+46    1.4914 
+47    1.8448 
+48   -0.2509 
+49    1.7263 
+50   -0.6471 
+51    0.4233 
+52   -1.3806 
+53   -0.6952 
+54   -0.9646 
+55    0.3830 
+56    0.6670 
+57    1.6099 
+58   -0.4127 
+59    0.7432 
+60    1.0667 
+61    0.5062 
+62   -0.6887 
+63    0.1982 
+64   -0.9693 
+65   -1.3396 
+66   -0.4554 
+67   -0.8909 
+68   -1.3938 
+69   -0.6278 
+70   -0.4497 
+71    1.4317 
+72   -0.2580 
+73    1.7744 
+74 -5.788e-02 
+75   -0.6133 
+76    0.9223 
+77   -1.4350 
+78   -0.5781 
+79 -5.277e-02 
+80    0.9878 
+81    0.4383 
+82    0.7875 
+83    0.5180 
+84   -0.6764 
+85    0.3506 
+86   -0.2638 
+87    0.3708 
+88    0.1919 
+89    0.6274 
+90   -0.5351 
+91    1.5320 
+92   -0.6454 
+93    1.4374 
+94    0.1960 
+95   -0.4051 
+96    0.9222 
+97   -0.2628 
+98    1.0165 
+99   -0.6328 
+100   -0.6784 
