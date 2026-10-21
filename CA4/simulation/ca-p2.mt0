@@ -1,0 +1,6 @@
+$DATA1 SOURCE='HSPICE' VERSION='P-2019.06-SP1-1 win64' PARAM_COUNT=0
+.TITLE ''
+ tsetup_a         thold_a          tcq              tpd_fall_a      
+ temper           alter#          
+  4.500e-11       -4.500e-11        2.221e-10          failed       
+   25.0000        1               

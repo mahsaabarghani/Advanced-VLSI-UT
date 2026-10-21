@@ -1,0 +1,34 @@
+* "simulator" "HSPICE" 
+* "version" "P-2019.06-SP1-1 win64"
+* "format" "HSP"
+* "rundate" "23:17:50 07/04/2025 "
+* "netlist" "ca-p1.sp "
+* "runtitle" "* vlsi advanced - computer assignment 4"
+* time =    0.            
+* temperature =   25.0000        
+*** BEGIN: Saved Operating Point ***                     
+.option 
++ gmindc=   1.0000p       
+.nodeset
++ a =   0.            
++ b =   1.8000        
++ c =   0.            
++ d =   1.8000        
++ final_out =   1.8000        
++ nand2_out =   5.6225n       
++ nand_out =   1.8000        
++ nor_out =   6.1307n       
++ not_out =   3.1642n       
++ vdd =   1.8000        
++ xor_out =   1.8000        
++ x1.n1 =   9.6120n       
++ x2.n1 = 402.2099m       
++ x3.abar =   3.0102n       
++ x3.bbar =   1.8000        
++ x3.n1 =   1.8000        
++ x3.n2 =   1.8000        
++ x3.n3 =   1.4647        
++ x3.n4 =   8.7260n       
++ x4.n1 =   2.8113n       
++ x6.n1 =   1.8000        
+***   END: Saved Operating Point ***                     

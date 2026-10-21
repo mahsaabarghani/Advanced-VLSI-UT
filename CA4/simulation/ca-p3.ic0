@@ -1,0 +1,81 @@
+* "simulator" "HSPICE" 
+* "version" "P-2019.06-SP1-1 win64"
+* "format" "HSP"
+* "rundate" "23:33:31 07/04/2025 "
+* "netlist" "ca-p3.sp "
+* "runtitle" "* vlsi advanced - computer assignment 4"
+* time =    0.            
+* temperature =   25.0000        
+*** BEGIN: Saved Operating Point ***                     
+.option 
++ gmindc=   1.0000p       
+.nodeset
++ a =   0.            
++ a_latch = 726.8592m       
++ a_latchbar = 726.8592m       
++ b =   1.8000        
++ b_latch = 726.8592m       
++ b_latchbar = 726.8592m       
++ c =   0.            
++ c_latch = 726.8592m       
++ c_latchbar = 726.8592m       
++ clk =   0.            
++ comp_out =   1.0875n       
++ d =   1.8000        
++ d_latch = 726.8592m       
++ d_latchbar = 726.8592m       
++ final_out =  23.3748n       
++ final_outbar =   1.8000        
++ vdd =   1.8000        
++ x_l1_a.dbar =   1.8000        
++ x_l1_a.net1 =   1.8000        
++ x_l1_a.net2 =   1.8000        
++ x_l2_b.dbar =  11.1881n       
++ x_l2_b.net1 =   1.8000        
++ x_l2_b.net2 =   1.8000        
++ x_l3_c.dbar =   1.8000        
++ x_l3_c.net1 =   1.8000        
++ x_l3_c.net2 =   1.8000        
++ x_l4_d.dbar =  11.1881n       
++ x_l4_d.net1 =   1.8000        
++ x_l4_d.net2 =   1.8000        
++ x_comp.nand2_out =   1.8000        
++ x_comp.nand_out =   1.7279        
++ x_comp.nor_out =   1.0382        
++ x_comp.not_out =   1.8000        
++ x_comp.xor_out =  48.4196m       
++ x_l5.clkbar =   1.8000        
++ x_l5.dbar =   1.8000        
++ x_l5.net1 =   1.8000        
++ x_l5.net2 =  23.3748n       
++ x_l1_a.x1.n1 =  44.8278m       
++ x_l1_a.x2.n1 = 652.2813m       
++ x_l1_a.x3.n1 =  18.7142n       
++ x_l1_a.x4.n1 = 652.2812m       
++ x_l2_b.x1.n1 =   1.4699        
++ x_l2_b.x2.n1 = 652.2812m       
++ x_l2_b.x3.n1 =  44.8278m       
++ x_l2_b.x4.n1 = 652.2813m       
++ x_l3_c.x1.n1 =  44.8278m       
++ x_l3_c.x2.n1 = 652.2813m       
++ x_l3_c.x3.n1 =  18.7142n       
++ x_l3_c.x4.n1 = 652.2812m       
++ x_l4_d.x1.n1 =   1.4699        
++ x_l4_d.x2.n1 = 652.2812m       
++ x_l4_d.x3.n1 =  44.8278m       
++ x_l4_d.x4.n1 = 652.2813m       
++ x_comp.x1.n1 =  82.4767m       
++ x_comp.x2.n1 =   1.6401        
++ x_comp.x3.abar =  19.3771n       
++ x_comp.x3.bbar =  44.2583m       
++ x_comp.x3.n1 = 492.1693m       
++ x_comp.x3.n2 =   1.7618        
++ x_comp.x3.n3 =  30.2185m       
++ x_comp.x3.n4 =   5.4462m       
++ x_comp.x4.n1 = 131.3294n       
++ x_comp.x6.n1 =   1.7687        
++ x_l5.x1.n1 =  18.7142n       
++ x_l5.x2.n1 =  11.6874n       
++ x_l5.x3.n1 =  11.6874n       
++ x_l5.x4.n1 =  44.8278m       
+***   END: Saved Operating Point ***                     

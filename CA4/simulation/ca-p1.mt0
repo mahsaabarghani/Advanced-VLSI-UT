@@ -1,0 +1,4 @@
+$DATA1 SOURCE='HSPICE' VERSION='P-2019.06-SP1-1 win64' PARAM_COUNT=0
+.TITLE '* vlsi advanced - computer assignment 4'
+ tpd_fall_a       tpd_rise_a       temper           alter#          
+  3.220e-10        2.582e-10         25.0000        1               
